@@ -1,1 +1,1 @@
-print("ami kishu bujhi nai .")
+print("Hello") 

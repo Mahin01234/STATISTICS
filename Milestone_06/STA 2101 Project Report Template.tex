@@ -1,0 +1,3768 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{graphicx}   % For figures and logo
+\usepackage{hyperref}   % For clickable links
+\usepackage{booktabs}   % For better tables
+\usepackage{amsmath}    % For equations
+\usepackage{setspace}   % Line spacing
+\usepackage{enumitem}   % Custom lists
+\usepackage{fancyhdr}   % For custom headers/footers
+\usepackage{tabularx}
+\usepackage{float}  
+\usepackage{caption} 
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{pifont}
+\usepackage{adjustbox}
+
+
+
+% -------------------------------
+% Header & Footer setup
+% -------------------------------
+\pagestyle{fancy}
+\fancyhf{} % Clear all header and footer fields
+
+% ULAB logo on the right side of header
+\fancyhead[R]{\includegraphics[height=1.2cm]{CommonAssets/ULAB Logo.PNG}}  
+
+% Adjust header spacing
+\setlength{\headsep}{1.5cm}
+
+% Page number on the right footer
+\fancyfoot[R]{Page \thepage}
+
+% -------------------------------
+
+
+
+
+
+\title{\textbf{Project Report : Agriculture Crop Yield}\\
+STA 2101: Statistics \& Probability}
+\author{Student Name : Mahinur Rahman Mahin \\
+Student ID : 242014165 \\
+University of Liberal Arts Bangladesh (ULAB)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\onehalfspacing
+
+\begin{abstract}
+This document is the course project report for STA 2101.This project analyzes by the link of "Agriculture crope Yield".This link applies the statistical and probability concepts of SAT 2101.Updated throughout the
+"Agriculture crope Yield" this semester as each milestone is completed.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+
+
+
+% -------------------------------
+
+
+\section{Milestone 1: Dataset Selection}
+\begin{itemize}
+    \item \textbf{Dataset Name: Agriculture Crop Yield} %[Insert dataset name here]
+    \item \textbf{Dataset URL:} \\                \url{https://www.kaggle.com/datasets/samuelotiattakorah/agriculture-crop-yield}  
+    \item \textbf{Description:} Rice is the primary food for half of the people in the world. It is also known as staple food in Bangladesh. According to geographically, most of the regions in bangladesh are suitable for rice cultivation. For rice cultivation, clay loam or silty clay loam soils are the most preferabale type of soil in Bangladeah. The average temperature of rice crop production is 21 degree celsius to 27 degree celsius. Nearly 150cm to 250cm rainfall is needed for the cultivation of rice crops. \\\
+    Fertilizer and irrigation are used in rice production. \\\
+    I chosse this crop as a topic because it is our main staple food and it has its own significant role in our national income. 
+\end{itemize}
+
+% -------------------------------
+
+
+\section{Milestone 2: Descriptive Statistics}
+Describe the summary statistics of my dataset. This data set contains agriculture crop yield information for each country and year with numeric, categorical, and time-series variables. The agriculture crop yield averages around 3.6 tons/ha, rainfall 820 mm, and temperature 25–26 degree celsius. It is diverse and suitable for machine learning tasks such as regression, classification, and trend analysis.
+
+Example of a table:
+
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{lrr}
+% \toprule
+% Variable & Mean & Standard Deviation \\
+% \midrule
+% Column A & 12.3 & 2.1 \\
+% Column B & 45.7 & 5.6 \\
+% \bottomrule
+% \end{tabular}
+% \caption{Sample descriptive statistics}
+% \end{table}
+\begin{table}[h!]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+\caption{Sample Crop Dataset}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|X|X|X|}
+\hline
+\textbf{Region} & \textbf{Soil Type} & \textbf{Crop} & \textbf{Rainfall (mm)} & \textbf{Temp (°C)} & \textbf{Fertilizer Used} & \textbf{Irrigation Used} & \textbf{Weather} & \textbf{Days to Harvest} & \textbf{Yield (t/ha)} \\ 
+\hline
+North & Sandy & Cotton & 897.07 & 27.67 & False & True & Cloudy & 122 & 6.55 \\ 
+\hline
+South & Clay & Rice & 992.67 & 18.02 & True & True & Rainy & 140 & 8.52 \\ 
+\hline
+North & Loam & Barley & 147.99 & 29.79 & False & False & Sunny & 106 & 1.12 \\ 
+\hline
+North & Sandy & Soybean & 986.86 & 16.64 & False & True & Rainy & 146 & 6.51 \\ 
+\hline
+South & Silt & Wheat & 730.38 & 31.62 & True & True & Cloudy & 110 & 7.25 \\ 
+\hline
+South & Silt & Soybean & 797.47 & 37.70 & False & True & Rainy & 74 & 5.89 \\ 
+\hline
+West & Clay & Wheat & 357.90 & 31.59 & False & False & Rainy & 90 & 2.65 \\ 
+\hline
+South & Sandy & Rice & 441.13 & 30.89 & True & True & Sunny & 61 & 5.83 \\ 
+\hline
+\end{tabularx}
+\end{table}
+
+\newpage
+\section{Part 0 : Probability Sampling Methods}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Screenshot 2025-10-15 001319.png}
+  \caption{Overview of Probability Sampling Methods}
+  \label{fig:prob_sampling}
+  \end{figure}
+
+
+\subsection*{Part A --- Setup}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Screenshot 2025-10-15 010845.PNG}
+  \caption{Setup}
+\end{figure}
+
+
+\\\\
+
+
+\subsection*{Part B --- Simple Random Sampling}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Screenshot 2025-10-15 011203.png}
+  \caption{Simple Random Sampling}
+\end{figure}
+
+\subsection*{Part C --- Systematic Sampling}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Screenshot 2025-10-15 011504.png}
+  \caption{Systematic Sampling}
+\end{figure}
+
+\subsection*{Part D --- Stratified Sampling}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Screenshot 2025-10-15 011751.png}
+  \caption{Stratified Sampling}
+\end{figure}
+
+\subsection*{Part E --- Cluster Sampling}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Screenshot 2025-10-15 011909.png}
+  \caption{Cluster Sampling}
+\end{figure}
+
+\subsection*{Part F --- Comparison \& Reflection}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth] {Screenshot 2025-10-15 012244.png} 
+  \\
+  \includegraphics[width=0.9\textwidth]{Screenshot 2025-10-15 012316.png}
+  \caption{Comparison and Reflection}
+
+
+  
+\end{figure}
+
+In this milestone, I applied four probability sampling methods to the Agriculture Crop Yield dataset from Kaggle, which includes crop production data across multiple countries. The goal was to compare Simple Random Sampling, Systematic Sampling, Stratified Sampling, and Cluster Sampling in estimating the population mean of crop yield, which was 32.337344 t/ha.
+
+Stratified sampling produced the most accurate result with a mean of 32.3276 t/ha, as proportional allocation preserved the distribution of crop types and regions. Simple Random Sampling yielded 32.25 t/ha, slightly lower, while systematic sampling gave 32.3872 t/ha, slightly higher. Cluster sampling showed the largest deviation at 32.5075 t/ha due to potential homogeneity within clusters.
+
+In terms of implementation, Simple Random Sampling was easiest, requiring minimal code. Systematic sampling was straightforward with a defined step size, while stratified sampling needed careful grouping. Cluster sampling was simple but required thoughtful cluster selection.
+
+Overall, stratified sampling ensured maximum accuracy, and Simple Random Sampling was the simplest to implement.
+
+
+% ---------- End Milestone 2 block ----------
+% -------------------------------
+
+
+
+
+
+\newpage
+\section{Milestone 3: Data Visualization}
+Add graphs and figures using LaTeX.
+
+
+\setstretch{1.25}
+
+\pagestyle{fancy}
+\fancyhf{} 
+
+\textbf{Implementing Probability Sampling Methods in Python}
+
+\noindent\rule{\textwidth}{0.4pt}
+
+
+\section*{Part A — Instructions}
+
+\noindent
+In this part, the goal is to set up the environment and load the dataset correctly 
+before applying different probability sampling techniques. 
+The following steps were followed:
+
+\begin{enumerate}
+    \item Import necessary Python libraries such as \texttt{pandas}, \texttt{numpy}, and \texttt{IPython.display}.
+    \item Load the crop yield dataset using the \texttt{read\_csv()} function.
+    \item Display the first few rows of the dataset to verify successful loading.
+    \item Calculate the population mean of the \texttt{Yield} column, 
+    which serves as the baseline for comparing sampling results.
+\end{enumerate}
+
+\noindent
+The dataset was successfully loaded, and preliminary statistics were verified before performing sampling.
+
+
+\end{itemize}
+
+\noindent\rule{\textwidth}{0.4pt}
+
+\section*{Part B - Data Set}
+\rhead{Sampling Assignment}
+\lhead{Probability Sampling Methods}
+\cfoot{\thepage}
+
+\begin{document}
+
+% -------------------------------
+\title{\textbf{Sampling Assignment}\\[0.5em]
+\large Implementing Probability Sampling Methods in LaTeX}
+\author{}
+\date{}
+\maketitle
+% -------------------------------
+
+
+
+
+\begin{verbatim}
+
+Column Name           Description
+-------------------------------------------------------------
+Region                Geographical region where the crop is grown (North,East,South)
+Soil_Type             Type of soil (Clay, Sandy, Loam, Silt, Peaty, Chalky)
+Crop                  Type of crop grown (Wheat, Rice, Maize, Barley,Soybean,Cotton)
+Rainfall_mm           Amount of rainfall (in millimeters) during crop growth
+Temperature_Celsius   Average temperature during crop growth (°C)
+Fertilizer_Used       Indicates fertilizer use (True = Yes, False = No)
+Irrigation_Used       Indicates irrigation use (True = Yes, False = No)
+Weather_Condition     Predominant weather condition (Sunny, Rainy, Cloudy)
+Days_to_Harvest       Number of days required for the crop to be harvested
+Yield_tons_per_hectare Total yield (in tons per hectare)
+\end{verbatim}
+
+\subsection*{�� Summary Statistics}
+\begin{verbatim}
+Total records: 1,000,000
+
+Regions:
+North - 25%
+West - 25%
+Other - 50%
+
+Soil Types:
+Sandy - 17%
+Loam - 17%
+Other - 66%
+
+Crops:
+Maize - 17%
+Rice - 17%
+Other - 66%
+Fertilizer Used: 50% True, 50% False
+Irrigation Used: 50% True, 50% False
+Weather Condition: 33% Sunny, 33% Rainy, 33% Cloudy
+\end{verbatim}
+
+
+\subsection*{�� Data Records}
+
+\begin{center}
+\scriptsize
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Region} & \textbf{Soil Type} & \textbf{Crop} & \textbf{Rainfall (mm)} & \textbf{Temp (°C)} & \textbf{Fert.} & \textbf{Irrig.} & \textbf{Weather} & \textbf{Days} & \textbf{Yield (t/ha)} \\
+\hline
+West & Sandy & Cotton & 897.08 & 27.68 & False & True & Cloudy & 122 & 6.56 \\
+South & Clay & Rice & 992.67 & 18.03 & True & True & Rainy & 140 & 8.53 \\
+North & Loam & Barley & 148.00 & 29.79 & False & False & Sunny & 106 & 1.13 \\
+North & Sandy & Soybean & 986.87 & 16.64 & False & True & Rainy & 146 & 6.52 \\
+South & Silt & Wheat & 730.38 & 31.62 & True & True & Cloudy & 110 & 7.25 \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{center}
+
+% -------------------------------
+
+
+
+\section*{C. Task 1: Frequency Distribution Table}
+
+\noindent
+In this task, a frequency distribution table was created to summarize the crop yield dataset. 
+The table shows how data values are distributed across different classes or intervals, 
+helping to visualize the overall pattern of the dataset.
+
+\begin{center}
+\small
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Class Interval (Yield)} & \textbf{Frequency (f)} & \textbf{Relative Frequency (\%)} \\
+\hline
+1.0 -- 2.9 & 3 & 6.0 \\
+3.0 -- 4.9 & 7 & 14.0 \\
+5.0 -- 6.9 & 20 & 40.0 \\
+7.0 -- 8.9 & 15 & 30.0 \\
+9.0 -- 10.9 & 5 & 10.0 \\
+\hline
+\textbf{Total} & \textbf{50} & \textbf{100\%} \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+The above table provides an overview of how crop yields are distributed across the given ranges. 
+Most yields fall within the 5.0–6.9 and 7.0–8.9 ranges, indicating a concentration of moderate to high productivity.
+
+
+   
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}   
+\usepackage{float}      
+\usepackage{caption}   
+
+\begin{document}
+\newpage
+
+
+\subsection*{Part D. Task 3: Graphical Representation} 
+
+
+
+
+
+\section*{Data Sample}
+
+\subsection*{First 5 Rows of the 20-Row Sample (Compact Format)}
+
+\begin{table}[htbp]
+\centering
+\caption{First 5 rows of the 20-row sample from the agricultural dataset}
+\label{tab:first_5_rows_compact}
+\begin{tabular}{@{}llllccccc@{}}
+\toprule
+\textbf{Region} & \textbf{Soil} & \textbf{Crop} & \makecell{\textbf{Rain}\\\textbf{(mm)}} & \makecell{\textbf{Temp}\\\textbf{(°C)}} & \makecell{\textbf{Fert.}\\\textbf{Used}} & \makecell{\textbf{Irr.}\\\textbf{Used}} & \textbf{Weather} & \makecell{\textbf{Days to}\\\textbf{Harvest}} & \makecell{\textbf{Yield}\\\textbf{(t/ha)}} \\
+\midrule
+667236 & Silt & Maize & 347.73 & 39.27 & No & No & Rainy & 138 & 2.69 \\
+5647 & Chalky & Wheat & 191.66 & 30.67 & No & No & Cloudy & 113 & 1.06 \\
+128429 & Peaty & Rice & 985.49 & 23.66 & No & Yes & Rainy & 95 & 6.98 \\
+572477 & Peaty & Rice & 230.49 & 26.07 & No & Yes & Sunny & 96 & 2.89 \\
+181467 & Peaty & Barley & 944.24 & 20.10 & Yes & No & Rainy & 147 & 6.19 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Alternative: Even More Compact Format}
+
+\begin{table}[htbp]
+\centering
+\caption{First 5 rows with minimal abbreviations}
+\label{tab:first_5_rows_minimal}
+\begin{tabular}{@{}llllcccc@{}}
+\toprule
+\textbf{ID} & \textbf{Region} & \textbf{Soil} & \textbf{Crop} & \textbf{Rain} & \textbf{Temp} & \textbf{F/I} & \textbf{Yield} \\
+& & & & \textbf{(mm)} & \textbf{(°C)} & & \textbf{(t/ha)} \\
+\midrule
+667236 & South & Silt & Maize & 347.73 & 39.27 & N/N & 2.69 \\
+5647 & North & Chalky & Wheat & 191.66 & 30.67 & N/N & 1.06 \\
+128429 & East & Peaty & Rice & 985.49 & 23.66 & N/Y & 6.98 \\
+572477 & West & Peaty & Rice & 230.49 & 26.07 & N/Y & 2.89 \\
+181467 & North & Peaty & Barley & 944.24 & 20.10 & Y/N & 6.19 \\
+\bottomrule
+\end{tabular}
+\vspace{0.2cm}
+\footnotesize
+\textbf{Note:} F/I = Fertilizer Used/Irrigation Used (Y=Yes, N=No)
+\end{table}
+
+\subsection*{Vertical Format (Best for Many Columns)}
+
+\begin{table}[htbp]
+\centering
+\caption{First 5 rows in vertical format}
+\label{tab:first_5_rows_vertical}
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Row 1}} \\
+\hline
+Region & 667236 \\
+Soil Type & Silt \\
+Crop & Maize \\
+Rainfall (mm) & 347.73 \\
+Temp (°C) & 39.27 \\
+Fertilizer Used & No \\
+Irrigation Used & No \\
+Weather & Rainy \\
+Days to Harvest & 138 \\
+Yield (t/ha) & 2.69 \\
+\hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Row 2}} \\
+\hline
+Region & 5647 \\
+Soil Type & Chalky \\
+Crop & Wheat \\
+Rainfall (mm) & 191.66 \\
+Temp (°C) & 30.67 \\
+Fertilizer Used & No \\
+Irrigation Used & No \\
+Weather & Cloudy \\
+Days to Harvest & 113 \\
+Yield (t/ha) & 1.06 \\
+\hline
+\end{tabular}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Row 3}} \\
+\hline
+Region & 128429 \\
+Soil Type & Peaty \\
+Crop & Rice \\
+Rainfall (mm) & 985.49 \\
+Temp (°C) & 23.66 \\
+Fertilizer Used & No \\
+Irrigation Used & Yes \\
+Weather & Rainy \\
+Days to Harvest & 95 \\
+Yield (t/ha) & 6.98 \\
+\hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Row 4}} \\
+\hline
+Region & 572477 \\
+Soil Type & Peaty \\
+Crop & Rice \\
+Rainfall (mm) & 230.49 \\
+Temp (°C) & 26.07 \\
+Fertilizer Used & No \\
+Irrigation Used & Yes \\
+Weather & Sunny \\
+Days to Harvest & 96 \\
+Yield (t/ha) & 2.89 \\
+\hline
+\end{tabular}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Row 5}} \\
+\hline
+Region & 181467 \\
+Soil Type & Peaty \\
+Crop & Barley \\
+Rainfall (mm) & 944.24 \\
+Temp (°C) & 20.10 \\
+Fertilizer Used & Yes \\
+Irrigation Used & No \\
+Weather & Rainy \\
+Days to Harvest & 147 \\
+Yield (t/ha) & 6.19 \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+
+\subsection*{Data Summary}
+
+\textbf{Key Observations:}
+\begin{itemize}
+    \item Highest yield: 6.98 t/ha (Rice in East region)
+    \item Lowest yield: 1.06 t/ha (Wheat in North region)
+    \item Most common soil: Peaty (3 out of 5 rows)
+    \item Most common weather: Rainy (3 out of 5 rows)
+    \item Fertilizer used in only 1 case
+\end{itemize}
+
+
+
+
+
+
+
+
+\subsection*{Bar Chart of Crop Type Frequency Distribution}
+\subsection*{Task 1:Bar Chart} 
+\noindent The following Python code was used to generate a bar chart showing the frequency distribution of different crop types in a 20-row sample from the dataset.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-01 205747.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+\noindent \textbf{Observations:}
+\begin{itemize}
+    \item \textbf{Wheat} appears most frequently in the sample (6 occurrences), indicating it might be the most commonly cultivated crop in this subset.
+    \item \textbf{Soybean} follows with 4 occurrences, showing moderate prevalence.
+    \item \textbf{Cotton} and \textbf{Rice} both appear 3 times each.
+    \item \textbf{Barley} and \textbf{Maize} appear least frequently with only 2 occurrences each.
+    \item The distribution suggests that cereals (Wheat, Rice, Barley) and legumes/oilseeds (Soybean) dominate the sample, while fiber crops (Cotton) and coarse cereals (Maize) are less represented.
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Crop Type} & \textbf{Frequency} \\
+    \hline
+    Wheat & 6 \\
+    Soybean & 4 \\
+    Cotton & 3 \\
+    Rice & 3 \\
+    Barley & 2 \\
+    Maize & 2 \\
+    \hline
+    \end{tabular}
+    \caption{Frequency distribution of crop types in the 20-row sample}
+    \label{tab:crop_freq_table}
+\end{table}
+
+
+
+\subsection*{Task 2: Histogram of Yield}
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+   
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-01 210541.png}
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+ 
+
+\clearpage
+\subsection*{Task 3: Ogive Chart}
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-01 213053.png}
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+\clearpage
+\subsection*{ask 4: Frequency Polygon of Yield}
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-01 215123.png}
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+\newpage
+\begin{verbatim}
+Rainfall Table:
+=============================================
+ Rainfall_mm Region   Crop
+  347.733856  South  Maize
+  191.661333  North  Wheat
+  985.486244   East   Rice
+  230.494966   West   Rice
+  944.241902  North Barley
+=============================================
+\end{verbatim}
+
+
+
+\subsection*{Rainfall}
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-02 235218.png}
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+\newpage
+\begin{verbatim} 
+\end{verbatim}
+\subsection*{Temperature Celsius}
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-02 235819.png}
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+
+
+\newpage
+\begin{verbatim} 
+\end{verbatim}
+\subsection*{Days to Harvest}
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-03 000012.png}
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+\begin{document}
+
+\section*{E. Task 3 : Analysis and Conclusion}
+
+
+
+\subsection*{Frequency Table Insights}
+\begin{itemize}
+    \item The frequency table shows which yield range or category occurs most frequently.
+    \item For the column \texttt{Yield\_tons\_per\_hectare}, the most frequent values are around the mid-range of crop yields.
+    \item From the relative frequency and cumulative frequency, it is evident that roughly half of the data falls below the median value.
+\end{itemize}
+
+\subsection*{Bar Chart (Regional Analysis)}
+\begin{itemize}
+    \item The Bar chart highlights significant differences in crop yields across regions.
+    \item West and South regions tend to have higher yields.
+    \item North region shows comparatively lower productivity.
+\end{itemize}
+
+\subsection*{Ogive Charts (Cumulative Frequency Analysis)}
+\begin{itemize}
+    \item The ``Less than'' Ogive chart is roughly S-shaped, indicating that about half of the data falls below the median.
+    \item The ``More than'' Ogive chart shows a slower rise at higher yield values, suggesting that a few farms achieve exceptionally high yields.
+    \item Ogive charts help in understanding cumulative distribution and make skewness of the data visible.
+\end{itemize}
+
+\subsection*{Distribution Shape \& Variability}
+\begin{itemize}
+    \item Histogram indicates the distribution is approximately symmetric with a slight right skew.
+    \item Some high-yield and low-yield observations may be outliers.
+    \item Standard deviation indicates moderate to high variability in the data.
+\end{itemize}
+
+\subsection*{Conclusion}
+\begin{itemize}
+    \item Crop yield data roughly follows a normal distribution, with some right skew and a few outliers.
+    \item Regional variations are evident, with certain regions consistently achieving higher yields.
+    \item Frequency table, Bar chart, and Ogive analysis together provide a clear understanding of distribution patterns, cumulative trends, and regional disparities.
+    \item This analysis is useful for agricultural planning and decision-making for targeted interventions.
+\end{itemize}
+}
+
+
+
+
+\section*{F. Task 4: Challenges} 
+
+
+\section*{Challenges Faced}
+
+During this milestone, several challenges were encountered while analyzing the Agriculture Crop Yield dataset:
+
+\begin{enumerate}
+    \item \textbf{Selecting the Right Column:} \\
+    \textbf{Challenge:} The dataset contains multiple variables, making it difficult to choose which column to analyze. \\
+    \textbf{Solution:} \texttt{Yield\_tons\_per\_hectare} was chosen because it directly represents crop productivity and is highly relevant for understanding distribution patterns.
+    
+    \item \textbf{Deciding on Class Intervals:} \\
+    \textbf{Challenge:} Determining appropriate class intervals for frequency distribution was tricky due to the wide range of yield values. \\
+    \textbf{Solution:} The Square Root Method was used to determine the number of classes and calculate suitable interval widths based on the data range.
+    
+    \item \textbf{Generating Visualizations:} \\
+    \textbf{Challenge:} Selecting the most effective visualization for the data. \\
+    \textbf{Solution:} Multiple visualizations were created:
+    \begin{itemize}
+        \item Histogram – to see the distribution of yield values.
+        \item Bar Chart – to compare average yields across regions.
+        \item Frequency Polygon – to show smooth distribution patterns.
+        \item Ogive Chart – to analyze cumulative frequency and percentiles.
+    \end{itemize}
+    
+    \item \textbf{Data Cleaning and Processing:} \\
+    \textbf{Challenge:} The dataset contained missing values and potential outliers that could affect analysis. \\
+    \textbf{Solution:} Missing values were filled or handled, and outliers were identified/removed to ensure accurate results.
+\end{enumerate}
+
+\noindent \textbf{Conclusion:} \\
+Overcoming these challenges allowed a thorough statistical analysis and creation of clear, informative visualizations. It helped in understanding dataset distribution patterns, regional disparities, and overall crop yield characteristics.
+
+
+
+
+
+
+\newpage
+
+\section{Milestone 4: Probability Distributions}
+Identify the probability distributions in your dataset. fitting, plot, and discuss the results.
+
+\begin{table}[h] 
+Task 1: Measures of Central Tendency
+\centering
+\caption{Sample Data from Crop Yield Dataset (First 5 Rows)}
+\label{tab:sample_data}
+\small  % Reduce font size
+\begin{tabular}{|p{0.8cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1cm}|p{1cm}|p{1.2cm}|p{1.2cm}|p{1.4cm}|}
+\hline
+\textbf{Reg.} & \textbf{Soil} & \textbf{Crop} & \textbf{Rain (mm)} & \textbf{Temp (°C)} & \textbf{Fert.} & \textbf{Irr.} & \textbf{Weather} & \textbf{Days} & \textbf{Yield (t/ha)} \\
+\hline
+West & Sandy & Cotton & 897.08 & 27.68 & No & Yes & Cloudy & 122 & 6.56 \\
+\hline
+South & Clay & Rice & 992.67 & 18.03 & Yes & Yes & Rainy & 140 & 8.53 \\
+\hline
+North & Loam & Barley & 148.00 & 29.79 & No & No & Sunny & 106 & 1.13 \\
+\hline
+North & Sandy & Soybean & 986.87 & 16.64 & No & Yes & Rainy & 146 & 6.52 \\
+\hline
+South & Silt & Wheat & 730.38 & 31.62 & Yes & Yes & Cloudy & 110 & 7.25 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Variable} & \textbf{Mean} & \textbf{Median} & \textbf{Mode} & \textbf{Skewness} \\
+\hline
+Rainfall (mm) & 550.0 & 550.1 & 100.00 & Left \\
+\hline
+Temperature (°C) & 27.5 & 27.5 & 15.00 & Symmetric \\
+\hline
+Days to Harvest & 104.5 & 104.0 & 91.00 & Right \\
+\hline
+Yield (tons/ha) & 4.6 & 4.7 & -1.15 & Left \\
+\hline
+\end{tabular}
+\caption{Statistical Summary and Skewness Analysis}
+\end{table}
+
+
+
+
+
+\begin{table}[h] 
+Task 2: Measures of Dispersion
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Variable} & \textbf{Mean} & \textbf{Median} & \textbf{Mode} & \textbf{Variance} & \textbf{Std Dev} & \textbf{Skewness} \\
+\hline
+Rainfall\_mm & 550.0 & 550.1 & 100.0009 & 67522.7 & 259.9 & Left skewed \\
+\hline
+Temperature\_Celsius & 27.5 & 27.5 & 15.0000 & 52.1 & 7.2 & Left skewed \\
+\hline
+Days\_to\_Harvest & 104.5 & 104.0 & 91.0000 & 673.6 & 26.0 & Right skewed \\
+\hline
+Yield\_tons\_per\_hectare & 4.6 & 4.7 & -1.1476 & 2.9 & 1.7 & Left skewed \\
+\hline
+\end{tabular}
+\end{table} 
+
+
+
+
+
+\clearpage
+\subsection*{Task 3: Visualization} 
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-02 233529.png} 
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+
+
+\begin{verbatim}
+Task 4: Analysis and Conclusion
+
+ANALYSIS:
+Rainfall mean: 550.0±259.9
+Temp mean: 27.5±7.2
+
+CONCLUSION:
+Data shows normal distribution with moderate spread.
+\end{verbatim}
+
+% -------------------------------
+
+
+
+
+
+
+
+
+\newpage
+\section{Milestone 5: Hypothesis Testing}
+State hypotheses, perform tests, and report conclusions.
+
+% -------------------------------
+
+
+
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\caption{Agricultural Data Sample}
+\small
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+Region & Soil & Crop & Rain & Temp & Fert. & Irr. & Weather & Days & Yield \\
+& & & (mm) & (\degree C) & Used & Used & & & (t/ha) \\
+\midrule
+West & Sandy & Cotton & 897.1 & 27.7 & F & T & Cloudy & 122 & 6.6 \\
+South & Clay & Rice & 992.7 & 18.0 & T & T & Rainy & 140 & 8.5 \\
+North & Loam & Barley & 148.0 & 29.8 & F & F & Sunny & 106 & 1.1 \\
+North & Sandy & Soybean & 986.9 & 16.6 & F & T & Rainy & 146 & 6.5 \\
+South & Silt & Wheat & 730.4 & 31.6 & T & T & Cloudy & 110 & 7.2 \\
+\bottomrule
+\end{tabular}
+\label{tab:agricultural_data}
+\end{table}
+
+
+
+
+
+
+
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{array}
+
+\begin{document}
+
+\section*{Probability Analysis}
+
+\subsection*{Dataset Information}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Description} & \textbf{Value} \\
+\midrule
+Total observations & 1,000,000 \\
+Event A size & 544,630 \\
+Event B size & 499,940 \\
+Event C size & 345,517 \\
+\bottomrule
+\end{tabular}
+
+\subsection*{Marginal Probabilities}
+\[
+\begin{aligned}
+P(A) &= \frac{544630}{1000000} = 0.54463 \\[4pt]
+P(B) &= \frac{499940}{1000000} = 0.49994 \\[4pt]
+P(C) &= \frac{345517}{1000000} = 0.345517
+\end{aligned}
+\]
+
+\subsection*{Joint and Union Probabilities}
+\[
+\begin{aligned}
+P(A \cap B) &= 0.272044 \\
+P(A \cup B) &= 0.772526 \\
+P(A^c) &= 1 - P(A) = 0.45537
+\end{aligned}
+\]
+
+\subsection*{Verification of Probability Rules}
+\begin{align*}
+\text{Inclusion-Exclusion Principle:} & \quad P(A \cup B) = P(A) + P(B) - P(A \cap B) \\
+\text{Calculation:} & \quad 0.54463 + 0.49994 - 0.272044 = 0.772526 \\
+\text{Actual } P(A \cup B): & \quad 0.772526 \quad \text{\checkmark}
+\end{align*}
+
+\subsection*{Summary Table}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Probability} & \textbf{Symbol} & \textbf{Value} & \textbf{Formula} \\
+\midrule
+Marginal A & $P(A)$ & 0.54463 & $\frac{544630}{1000000}$ \\
+Marginal B & $P(B)$ & 0.49994 & $\frac{499940}{1000000}$ \\
+Marginal C & $P(C)$ & 0.345517 & $\frac{345517}{1000000}$ \\
+Intersection A and B & $P(A \cap B)$ & 0.272044 & - \\
+Union A and B & $P(A \cup B)$ & 0.772526 & $P(A) + P(B) - P(A \cap B)$ \\
+Complement of A & $P(A^c)$ & 0.45537 & $1 - P(A)$ \\
+\bottomrule
+\end{tabular}
+
+
+
+
+
+\clearpage
+\subsection*{Task 1: Event A and Complement Frequency} 
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-03 223318.png} 
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+
+
+
+
+\clearpage
+\subsection*{Task 1: Event A and Complement Frequency} 
+
+
+\noindent The following Python code was used to generate the Line Chart showing changes in yield over time or across different regions.
+
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{Screenshot 2025-12-03 223541.png} 
+    \caption{Line Chart showing Yield Trends}
+    \label{fig:line_chart}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\section*{Probability Analysis of Student Performance}
+
+\subsection*{1. Most Likely Events}
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+    \item \textbf{Exam 1 Performance:} Approximately 68\% of students scored above 70 in Exam 1.
+    \item \textbf{Section Distribution:} Slightly more than half of the students (52\%) are enrolled in Section B.
+\end{itemize}
+
+\subsection*{2. Interesting Findings}
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+    \item Students from \textbf{Section A} who scored above 70 were \textbf{fewer than expected}, indicating potential performance differences between sections.
+    \item About \textbf{32\% of students} scored 70 or below, suggesting areas where academic support may be needed.
+\end{itemize}
+
+\subsection*{3. How Probability Helps in Educational Decision-Making}
+Probability provides a quantitative foundation for making informed educational decisions:
+
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+    \item \textbf{Curriculum Adjustment:} Since most students perform well (68\% above 70), instructors might consider \textbf{increasing exam difficulty} to better differentiate student abilities.
+    
+    \item \textbf{Targeted Support:} The observed performance gap in Section A suggests that \textbf{additional academic support or different instructional methods} might benefit this group.
+    
+    \item \textbf{Evidence-Based Improvements:} These probability metrics help identify patterns that can inform \textbf{teaching strategies, resource allocation, and student support programs}.
+\end{itemize}
+
+\subsection*{Summary of Key Probabilities}
+\begin{center}
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Event} & \textbf{Probability} \\
+\midrule
+Student scoring above 70 in Exam 1 & 0.68 \\
+Student in Section B & 0.52 \\
+Student scoring 70 or below & 0.32 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{10pt}
+These findings demonstrate how probability analysis can transform raw data into actionable insights for educational improvement.
+
+
+
+
+
+
+
+\newpage
+\section{Milestone 6: Regression Analysis}
+Fit regression models, explain coefficients, and evaluate model fit.
+
+% -------------------------------
+
+
+\begin{document}
+
+\author{Data Analysis Team}
+\date{\today}
+\maketitle
+
+\section*{Introduction}
+Building on the previous milestone on basic probability, this chapter introduces conditional probability, independent vs. dependent events, Bayes' rule, and probability distributions. These concepts are fundamental for modeling uncertainty in data and are widely used in statistical inference, machine learning, and decision-making.
+
+Dataset loaded successfully with the following characteristics:
+\begin{itemize}
+    \item Sample data shape: $(11, 10)$
+    \item Normal distribution data points: $1,000,000$
+\end{itemize}
+
+\section{Conditional Probability Calculations}
+\subsection{Marginal Probabilities}
+\begin{table}[h!]
+\centering
+\caption{Marginal Probabilities}
+\begin{tabular}{lccc}
+\toprule
+Event & Count & Total & Probability \\
+\midrule
+North & 250,173 & 1,000,000 & 0.250 \\
+West & 250,074 & 1,000,000 & 0.250 \\
+South & 250,054 & 1,000,000 & 0.250 \\
+East & 249,699 & 1,000,000 & 0.250 \\
+Sandy & 167,119 & 1,000,000 & 0.167 \\
+Loam & 166,795 & 1,000,000 & 0.167 \\
+Chalky & 166,779 & 1,000,000 & 0.167 \\
+Silt & 166,672 & 1,000,000 & 0.167 \\
+Clay & 166,352 & 1,000,000 & 0.166 \\
+Peaty & 166,283 & 1,000,000 & 0.166 \\
+Maize & 166,824 & 1,000,000 & 0.167 \\
+Rice & 166,792 & 1,000,000 & 0.167 \\
+Barley & 166,777 & 1,000,000 & 0.167 \\
+Wheat & 166,673 & 1,000,000 & 0.167 \\
+Cotton & 166,585 & 1,000,000 & 0.167 \\
+Soybean & 166,349 & 1,000,000 & 0.166 \\
+Sunny & 333,790 & 1,000,000 & 0.334 \\
+Rainy & 333,561 & 1,000,000 & 0.334 \\
+Cloudy & 332,649 & 1,000,000 & 0.333 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Conditional Probabilities}
+\subsubsection{$P(\text{Crop} \mid \text{Soil Type})$}
+
+For each soil type $S$, the conditional probability of crop $C$ is given by:
+\[
+P(A \mid B) = \frac{\text{Count}(A \cap B)}{\text{Count}(B)}
+\]
+
+\begin{table}[h!]
+\centering
+\caption{Conditional Probabilities $P(\text{Crop} \mid \text{Soil})$}
+\begin{tabular}{lcccccc}
+\toprule
+Soil Type & Cotton & Rice & Barley & Soybean & Wheat & Maize \\
+\midrule
+Sandy (n=167,119) & 0.167 & 0.166 & 0.166 & 0.166 & 0.168 & 0.166 \\
+Clay (n=166,352) & 0.167 & 0.168 & 0.167 & 0.166 & 0.166 & 0.166 \\
+Loam (n=166,795) & 0.167 & 0.166 & 0.167 & 0.166 & 0.166 & 0.167 \\
+Silt (n=166,672) & 0.165 & 0.168 & 0.167 & 0.166 & 0.167 & 0.167 \\
+Peaty (n=166,283) & 0.167 & 0.166 & 0.168 & 0.165 & 0.168 & 0.167 \\
+Chalky (n=166,779) & 0.167 & 0.166 & 0.166 & 0.168 & 0.165 & 0.167 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{$P(\text{High Yield} \mid \text{Weather})$}
+\begin{align*}
+P(\text{High Yield} \mid \text{Cloudy}) &= \frac{166,349}{332,649} = 0.500 \\
+P(\text{High Yield} \mid \text{Rainy}) &= \frac{166,868}{333,561} = 0.500 \\
+P(\text{High Yield} \mid \text{Sunny}) &= \frac{167,263}{333,790} = 0.501
+\end{align*}
+
+\section{Independent vs. Dependent Events}
+\subsection{Contingency Tables}
+\begin{table}[h!]
+\centering
+\caption{Soil Type × Crop Contingency Table}
+\begin{tabular}{lcccccc}
+\toprule
+Soil Type & Barley & Cotton & Maize & Rice & Soybean & Wheat \\
+\midrule
+Chalky & 27,742 & 27,817 & 27,885 & 27,746 & 28,040 & 27,549 \\
+Clay & 27,726 & 27,734 & 27,631 & 27,960 & 27,673 & 27,628 \\
+Loam & 27,896 & 27,804 & 27,908 & 27,740 & 27,766 & 27,681 \\
+Peaty & 27,857 & 27,692 & 27,819 & 27,589 & 27,418 & 27,908 \\
+Sandy & 27,751 & 27,955 & 27,788 & 27,803 & 27,753 & 28,069 \\
+Silt & 27,805 & 27,583 & 27,793 & 27,954 & 27,699 & 27,838 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Region × Weather Condition Contingency Table}
+\begin{tabular}{lccc}
+\toprule
+Region & Cloudy & Rainy & Sunny \\
+\midrule
+East & 82,874 & 83,220 & 83,605 \\
+North & 83,161 & 83,549 & 83,463 \\
+South & 83,348 & 83,121 & 83,585 \\
+West & 83,266 & 83,671 & 83,137 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Chi-Square Tests for Independence}
+\subsubsection{Soil Type vs Crop}
+\begin{itemize}
+    \item $\chi^2 = 20.190$
+    \item $p\text{-value} = 0.7368$
+    \item Degrees of freedom = 25
+    \item \textbf{Conclusion}: FAIL to reject independence. Soil Type and Crop may be independent.
+\end{itemize}
+
+\subsubsection{Region vs Weather Condition}
+\begin{itemize}
+    \item $\chi^2 = 5.175$
+    \item $p\text{-value} = 0.5216$
+    \item Degrees of freedom = 6
+    \item \textbf{Conclusion}: FAIL to reject independence. Region and Weather Condition may be independent.
+\end{itemize}
+
+\subsection{Expected vs Observed Frequencies (Soil Type vs Crop)}
+\begin{table}[h!]
+\centering
+\caption{Expected Frequencies}
+\begin{tabular}{lcccccc}
+\toprule
+Soil Type & Barley & Cotton & Maize & Rice & Soybean & Wheat \\
+\midrule
+Chalky & 27,814.90 & 27,782.88 & 27,822.74 & 27,817.40 & 27,743.52 & 27,797.56 \\
+Clay & 27,743.69 & 27,711.75 & 27,751.51 & 27,746.18 & 27,672.49 & 27,726.39 \\
+Loam & 27,817.57 & 27,785.55 & 27,825.41 & 27,820.07 & 27,746.18 & 27,800.22 \\
+Peaty & 27,732.18 & 27,700.25 & 27,740.00 & 27,734.67 & 27,661.01 & 27,714.89 \\
+Sandy & 27,871.61 & 27,839.52 & 27,879.46 & 27,874.11 & 27,800.08 & 27,854.23 \\
+Silt & 27,797.06 & 27,765.06 & 27,804.89 & 27,799.56 & 27,725.72 & 27,779.72 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Standardized Residuals (Soil Type vs Crop)}
+\begin{table}[h!]
+\centering
+\caption{Standardized Residuals}
+\begin{tabular}{lcccccc}
+\toprule
+Soil Type & Barley & Cotton & Maize & Rice & Soybean & Wheat \\
+\midrule
+Chalky & -0.44 & 0.20 & 0.37 & -0.43 & 1.78 & -1.49 \\
+Clay & -0.11 & 0.13 & -0.72 & 1.28 & 0.00 & -0.59 \\
+Loam & 0.47 & 0.11 & 0.50 & -0.48 & 0.12 & -0.72 \\
+Peaty & 0.75 & -0.05 & 0.47 & -0.87 & -1.46 & 1.16 \\
+Sandy & -0.72 & 0.69 & -0.55 & -0.43 & -0.28 & 1.29 \\
+Silt & 0.05 & -1.09 & -0.07 & 0.93 & -0.16 & 0.35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Bayes' Rule Application}
+\subsection{Example 1: Soil Type Given Crop}
+Problem: What is the probability that a field has Clay soil given it has Rice crop?
+
+\begin{align*}
+P(\text{Clay}) &= \frac{166,352}{1,000,000} = 0.166 \\
+P(\text{Rice}) &= \frac{166,792}{1,000,000} = 0.167 \\
+P(\text{Rice} \mid \text{Clay}) &= \frac{27,960}{166,352} = 0.168
+\end{align*}
+
+\textbf{Bayes' Rule Calculation:}
+\begin{align*}
+P(\text{Clay} \mid \text{Rice}) &= \frac{P(\text{Rice} \mid \text{Clay}) \times P(\text{Clay})}{P(\text{Rice})} \\
+&= \frac{0.168 \times 0.166}{0.167} = 0.168
+\end{align*}
+
+\textbf{Verification by direct calculation:}
+\[
+P(\text{Clay} \mid \text{Rice}) = \frac{27,960}{166,792} = 0.168
+\]
+
+\subsection{Example 2: Weather and Yield}
+\begin{align*}
+P(\text{Sunny}) &= \frac{333,790}{1,000,000} = 0.334 \\
+P(\text{High Yield}) &= \frac{500,480}{1,000,000} = 0.500 \\
+P(\text{Sunny} \mid \text{High Yield}) &= \frac{167,263}{500,480} = 0.334
+\end{align*}
+
+\textbf{Bayes' Rule Calculation:}
+\begin{align*}
+P(\text{High Yield} \mid \text{Sunny}) &= \frac{P(\text{Sunny} \mid \text{High Yield}) \times P(\text{High Yield})}{P(\text{Sunny})} \\
+&= \frac{0.334 \times 0.500}{0.334} = 0.501
+\end{align*}
+
+\subsection{Prior vs Posterior Probabilities}
+\begin{itemize}
+    \item Prior $P(\text{High Yield}) = 0.500$
+    \item Posterior $P(\text{High Yield} \mid \text{Sunny}) = 0.501$
+    \item \textbf{Conclusion}: Sunny weather increases the probability of high yield
+\end{itemize}
+
+\section{Normal Distribution Analysis}
+\subsection{Descriptive Statistics}
+\begin{table}[h!]
+\centering
+\begin{tabular}{lc}
+\toprule
+Statistic & Value \\
+\midrule
+Mean ($\mu$) & 4.6495 \\
+Standard Deviation ($\sigma$) & 1.6966 \\
+Median & 4.6518 \\
+Skewness & -0.0009 (Normal $\approx$ 0) \\
+Kurtosis & -0.5200 (Normal $\approx$ 0) \\
+Minimum & -1.15 \\
+Maximum & 9.96 \\
+Range & 11.11 \\
+Sample Size & 1,000,000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Empirical Rule Check}
+\begin{table}[h!]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Range & Observed & Expected & Difference \\
+\midrule
+$\mu \pm \sigma$ & 65.42\% & 68.27\% & -2.85\% \\
+$\mu \pm 2\sigma$ & 96.31\% & 95.45\% & +0.86\% \\
+$\mu \pm 3\sigma$ & 100.00\% & 99.73\% & +0.27\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Normality Tests}
+\begin{table}[h!]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Test & Statistic & $p$-value & Conclusion \\
+\midrule
+Shapiro-Wilk (n=5000) & 0.9956 & 0.000000 & Reject normality ($p \leq 0.05$) \\
+Kolmogorov-Smirnov & 0.0164 & 0.000000 & Reject normality ($p \leq 0.05$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Probability Calculations}
+\begin{align*}
+P(X > \mu) &= P(X > 4.65) = 0.5000 \text{ or } 50\% \\
+P(\mu - \sigma < X < \mu + \sigma) &= P(2.95 < X < 6.35) = 0.6542 \text{ or } 65.42\% \\
+P(X < \mu - 2\sigma) &= P(X < 1.26) = 0.022750 \text{ or } 2.2750\%
+\end{align*}
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 100714.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\section*{Knowledge Points: Conditional Probability}
+
+\subsection*{Dataset Information}
+The analysis is based on a dataset containing agricultural field data with the following structure:
+
+\begin{table}[h!]
+\centering
+\caption{Dataset Structure}
+\begin{tabular}{lll}
+\toprule
+\textbf{Column} & \textbf{Data Type} & \textbf{Description} \\
+\midrule
+Region & object & Geographic region \\
+Soil\_Type & object & Type of soil \\
+Crop & object & Type of crop grown \\
+Rainfall\_mm & float64 & Rainfall in millimeters \\
+Temperature\_Celsius & float64 & Temperature in Celsius \\
+Fertilizer\_Used & bool & Whether fertilizer was used \\
+Irrigation\_Used & bool & Whether irrigation was used \\
+Weather\_Condition & object & Weather condition \\
+Days\_to\_Harvest & int64 & Days required for harvest \\
+Yield\_tons\_per\_hectare & float64 & Crop yield \\
+High\_Yield & bool & Whether yield is high \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item \textbf{Total Records:} 10
+    \item \textbf{Total Columns:} 11
+    \item \textbf{Memory Usage:} 802.0+ bytes
+\end{itemize}
+
+\subsection*{Descriptive Statistics}
+\begin{table}[h!]
+\centering
+\caption{Summary Statistics of Numerical Variables}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Statistic} & \textbf{Rainfall (mm)} & \textbf{Temperature (°C)} & \textbf{Days to Harvest} & \textbf{Yield (tons/ha)} \\
+\midrule
+Count & 10.000 & 10.000 & 10.000 & 10.000 \\
+Mean & 592.814 & 26.835 & 111.600 & 5.101 \\
+Std Dev & 325.375 & 7.114 & 29.091 & 2.358 \\
+Min & 147.998 & 16.644 & 61.000 & 1.127 \\
+25\% & 367.189 & 20.208 & 94.000 & 3.135 \\
+50\% & 585.755 & 28.736 & 116.000 & 5.864 \\
+75\% & 872.176 & 31.417 & 136.750 & 6.546 \\
+Max & 992.673 & 37.705 & 146.000 & 8.527 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Data Quality and Yield Analysis}
+\begin{itemize}
+    \item \textbf{Missing Values:} No missing values in any column
+    \item \textbf{High Yield Threshold:} 6.53 tons per hectare
+    \item \textbf{High Yield Cases:} 6 (60\% of total)
+    \item \textbf{Low Yield Cases:} 4 (40\% of total)
+    \item \textbf{Average Yield:} 5.10 tons per hectare
+\end{itemize}
+
+\subsection*{Sample Data (First 5 Rows)}
+\begin{table}[h!]
+\centering
+\caption{Sample Observations}
+\begin{tabular}{llllcccc}
+\toprule
+Region & Soil Type & Crop & Rainfall (mm) & Temp (°C) & Fertilizer & Irrigation & Yield \\
+\midrule
+West & Sandy & Cotton & 897.08 & 27.68 & No & Yes & 6.56 \\
+South & Clay & Rice & 992.67 & 18.03 & Yes & Yes & 8.53 \\
+North & Loam & Barley & 148.00 & 29.79 & No & No & 1.13 \\
+North & Sandy & Soybean & 986.87 & 16.64 & No & Yes & 6.52 \\
+South & Silt & Wheat & 730.38 & 31.62 & Yes & Yes & 7.25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Conditional Probability Calculations}
+Conditional probability is defined as:
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+\]
+where $P(A \mid B)$ is the probability of event $A$ occurring given that event $B$ has occurred.
+
+\subsubsection*{Region-Wise Conditional Probabilities}
+\[
+\begin{aligned}
+P(\text{High Yield} \mid \text{Region = West}) &= 0.33 \quad (33\%) \\
+P(\text{High Yield} \mid \text{Region = South}) &= 1.00 \quad (100\%) \\
+P(\text{High Yield} \mid \text{Region = North}) &= 0.33 \quad (33\%) \\
+\end{aligned}
+\]
+
+\subsubsection*{Weather-Wise Conditional Probabilities}
+\[
+\begin{aligned}
+P(\text{High Yield} \mid \text{Weather = Cloudy}) &= 1.00 \quad (100\%) \\
+P(\text{High Yield} \mid \text{Weather = Rainy}) &= 0.60 \quad (60\%) \\
+P(\text{High Yield} \mid \text{Weather = Sunny}) &= 0.33 \quad (33\%) \\
+\end{aligned}
+\]
+
+\subsubsection*{Fertilizer Impact Analysis}
+\[
+\begin{aligned}
+P(\text{High Yield} \mid \text{Fertilizer Used}) &= 0.75 \quad (75\%) \\
+P(\text{High Yield} \mid \text{Fertilizer Not Used}) &= 0.50 \quad (50\%) \\
+\end{aligned}
+\]
+
+\subsubsection*{Crop-Wise Conditional Probabilities}
+\[
+\begin{aligned}
+P(\text{High Yield} \mid \text{Crop = Cotton}) &= 1.00 \quad (100\%) \\
+P(\text{High Yield} \mid \text{Crop = Rice}) &= 1.00 \quad (100\%) \\
+P(\text{High Yield} \mid \text{Crop = Barley}) &= 0.00 \quad (0\%) \\
+P(\text{High Yield} \mid \text{Crop = Soybean}) &= 1.00 \quad (100\%) \\
+P(\text{High Yield} \mid \text{Crop = Wheat}) &= 0.25 \quad (25\%) \\
+\end{aligned}
+\]
+
+\subsubsection*{Soil Type Conditional Probabilities}
+\[
+\begin{aligned}
+P(\text{High Yield} \mid \text{Soil = Sandy}) &= 0.75 \quad (75\%) \\
+P(\text{High Yield} \mid \text{Soil = Clay}) &= 0.50 \quad (50\%) \\
+P(\text{High Yield} \mid \text{Soil = Loam}) &= 0.00 \quad (0\%) \\
+P(\text{High Yield} \mid \text{Soil = Silt}) &= 0.67 \quad (67\%) \\
+\end{aligned}
+\]
+
+\subsection*{Key Observations}
+\begin{enumerate}
+    \item The South region shows the highest conditional probability of high yield (100\%)
+    \item Cloudy weather conditions are associated with 100\% high yield probability
+    \item Fertilizer usage increases the probability of high yield from 50\% to 75\%
+    \item Certain crops (Cotton, Rice, Soybean) show 100\% high yield probability in this dataset
+    \item Loam soil shows 0\% high yield probability, suggesting it may not be suitable for these crops under the given conditions
+\end{enumerate}
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 101246.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+\subsection*{REATING COMPARISON CHART} 
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 101630.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+\section*{Additional Numerical Analysis}
+\subsection*{Yield Analysis by Different Factors}
+
+\subsubsection*{Average Yield by Region}
+\[
+\begin{aligned}
+\text{West:} &\quad 4.31 \text{ tons/hectare} \\
+\text{South:} &\quad 6.88 \text{ tons/hectare} \\
+\text{North:} &\quad 3.53 \text{ tons/hectare} \\
+\end{aligned}
+\]
+
+\begin{table}[h!]
+\centering
+\caption{Summary of Regional Yield Performance}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Region} & \textbf{Avg. Yield (tons/ha)} & \textbf{P(High Yield)} & \textbf{Rank} \\
+\midrule
+South & 6.88 & 1.00 (100\%) & 1 \\
+West & 4.31 & 0.33 (33\%) & 2 \\
+North & 3.53 & 0.33 (33\%) & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection*{Average Yield by Weather Condition}
+\[
+\begin{aligned}
+\text{Cloudy:} &\quad 6.90 \text{ tons/hectare} \\
+\text{Rainy:} &\quad 5.46 \text{ tons/hectare} \\
+\text{Sunny:} &\quad 3.30 \text{ tons/hectare} \\
+\end{aligned}
+\]
+
+\begin{table}[h!]
+\centering
+\caption{Weather Impact on Crop Yield}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Weather} & \textbf{Avg. Yield (tons/ha)} & \textbf{P(High Yield)} & \textbf{Rank} \\
+\midrule
+Cloudy & 6.90 & 1.00 (100\%) & 1 \\
+Rainy & 5.46 & 0.60 (60\%) & 2 \\
+Sunny & 3.30 & 0.33 (33\%) & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection*{Average Yield by Fertilizer Usage}
+\[
+\begin{aligned}
+\text{Fertilizer Used:} &\quad 6.14 \text{ tons/hectare} \\
+\text{Fertilizer Not Used:} &\quad 4.41 \text{ tons/hectare} \\
+\end{aligned}
+\]
+
+\begin{table}[h!]
+\centering
+\caption{Fertilizer Impact on Crop Yield}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Fertilizer Status} & \textbf{Avg. Yield (tons/ha)} & \textbf{P(High Yield)} & \textbf{Increase} \\
+\midrule
+Used & 6.14 & 0.75 (75\%) & +1.73 tons/ha \\
+Not Used & 4.41 & 0.50 (50\%) & - \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{enumerate}
+
+
+
+
+
+
+
+begin{document}
+
+\ttfamily  % Using typewriter font to match the original formatting
+
+\section*{DATA SUMMARY:}
+Total Records: 10\\
+Total Variables: 10
+
+\vspace{0.5cm}
+
+\section*{HIGH YIELD THRESHOLD:}
+Average Yield: 5.10 tons/hectare\\
+High Yield Cases: 6 out of 10\\
+High Yield Rate: 60.0\%
+
+\vspace{0.5cm}
+
+\section*{MATHEMATICAL FORMULA:}
+\noindent\rule{\textwidth}{0.4pt}
+
+Conditional Probability: P(A|B) = P(A ∩ B) / P(B)\\
+Where:\\
+  P(A|B) = Probability of event A given event B has occurred\\
+  P(A ∩ B) = Probability of both A and B occurring\\
+  P(B) = Probability of event B
+
+In our case:\\
+  A = High Yield (Yield > Average)\\
+  B = Specific Condition (e.g., Region='South', Weather='Rainy')
+
+\vspace{0.5cm}
+
+\section*{CALCULATION EXAMPLES:}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{EXAMPLE 1: South Region}
+
+�� Calculating: P(High\_Yield | Region = South)\\
+\noindent\rule{0.9\textwidth}{0.1pt}\\
+Total Samples (N): 10\\
+Samples with Region = South: 4\\
+P(B) = P(Region = South) = 4/10 = 0.400\\
+Samples with High\_Yield AND Region = South: 4\\
+P(A ∩ B) = 4/10 = 0.400
+
+P(A|B) = P(A ∩ B) / P(B) = 0.400 / 0.400\\
+       = 4 / 4\\
+       = 1.000 (100.0\%)\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{EXAMPLE 2: Fertilizer Used}
+
+�� Calculating: P(High\_Yield | Fertilizer\_Used = True)\\
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+Total Samples (N): 10\\
+Samples with Fertilizer\_Used = True: 4\\
+P(B) = P(Fertilizer\_Used = True) = 4/10 = 0.400\\
+Samples with High\_Yield AND Fertilizer\_Used = True: 3\\
+P(A ∩ B) = 3/10 = 0.300
+
+P(A|B) = P(A ∩ B) / P(B) = 0.300 / 0.400\\
+       = 3 / 4\\
+       = 0.750 (75.0\%)\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\vspace{0.5cm}
+
+\section*{ALL CONDITIONAL PROBABILITIES:}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{REGION-WISE:}
+\begin{multicols}{3}
+  P(High\_Yield | Region = West) = 1/3 = 0.33 (33\%)\\
+  P(High\_Yield | Region = South) = 4/4 = 1.00 (100\%)\\
+  P(High\_Yield | Region = North) = 1/3 = 0.33 (33\%)
+\end{multicols}
+
+\subsection*{WEATHER-WISE:}
+\begin{multicols}{3}
+  P(High\_Yield | Weather = Cloudy) = 2/2 = 1.00 (100\%)\\
+  P(High\_Yield | Weather = Rainy) = 3/5 = 0.60 (60\%)\\
+  P(High\_Yield | Weather = Sunny) = 1/3 = 0.33 (33\%)
+\end{multicols}
+
+\subsection*{FERTILIZER IMPACT:}
+\begin{multicols}{2}
+  P(High\_Yield | Fertilizer Used) = 3/4 = 0.75 (75\%)\\
+  P(High\_Yield | Fertilizer Not Used) = 3/6 = 0.50 (50\%)
+\end{multicols}
+
+\subsection*{CROP-WISE:}
+\begin{multicols}{3}
+  P(High\_Yield | Crop = Cotton) = 1/1 = 1.00 (100\%)\\
+  P(High\_Yield | Crop = Rice) = 2/2 = 1.00 (100\%)\\
+  P(High\_Yield | Crop = Barley) = 0/1 = 0.00 (0\%)\\
+  P(High\_Yield | Crop = Soybean) = 2/2 = 1.00 (100\%)\\
+  P(High\_Yield | Crop = Wheat) = 1/4 = 0.25 (25\%)
+\end{multicols}
+
+\newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 102747.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+\subsection*{PROBABILITY COMPARISON CHART}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 103740.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily  % Using typewriter font to match the original formatting
+
+\section*{STATISTICAL SUMMARY}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{CONDITION WITH HIGHEST PROBABILITY:}
+  Crop: Rice\\
+  P = 1.000 (100.0\%)
+
+\subsection*{CONDITION WITH LOWEST PROBABILITY:}
+  Soil: Loam\\
+  P = 0.000 (0.0\%)
+
+\subsection*{CONDITIONS ABOVE OVERALL AVERAGE:}
+\begin{multicols}{2}
+  Region: South: 1.000\\
+  Weather: Cloudy: 1.000\\
+  Fertilizer: Used: 0.750\\
+  Crop: Cotton: 1.000\\
+  Crop: Rice: 1.000\\
+  Crop: Soybean: 1.000\\
+  Soil: Sandy: 0.750\\
+  Soil: Silt: 0.667
+\end{multicols}
+
+\vspace{0.5cm}
+
+\section*{INTERPRETATION:}
+\noindent\rule{\textwidth}{0.4pt}
+
+1. P(High Yield | Condition) > Overall Average (0.50):\\
+   \hspace{1em}- The condition increases the likelihood of high yield\\
+2. P(High Yield | Condition) < Overall Average (0.50):\\
+   \hspace{1em}- The condition decreases the likelihood of high yield\\
+3. P(High Yield | Condition) = 1.00:\\
+   \hspace{1em}- All cases with this condition resulted in high yield\\
+4. P(High Yield | Condition) = 0.00:\\
+   \hspace{1em}- No cases with this condition resulted in high yield
+
+\vspace{0.5cm}
+
+\section*{RECOMMENDATIONS BASED ON ANALYSIS:}
+\noindent\rule{\textwidth}{0.4pt}
+
+1. FOCUS ON CONDITIONS WITH HIGH PROBABILITY:\\
+   \hspace{1em}- Prioritize conditions that show P > 0.50\\
+2. AVOID CONDITIONS WITH LOW PROBABILITY:\\
+   \hspace{1em}- Minimize conditions that show P < 0.50\\
+3. CONSIDER SAMPLE SIZE:\\
+   \hspace{1em}- Probabilities based on small samples may not be reliable\\
+   \hspace{1em}- Look for patterns across multiple conditions
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily  % Using typewriter font to match the original formatting
+
+\section*{View Data (First 5 rows):}
+\begin{Verbatim}[fontsize=\small]
+  Region Soil_Type     Crop  Rainfall_mm  Temperature_Celsius  \
+0   West     Sandy   Cotton   897.077239            27.676966   
+1  South      Clay     Rice   992.673282            18.026142   
+2  North      Loam   Barley   147.998025            29.794042   
+3  North     Sandy  Soybean   986.866331            16.644190   
+4  South      Silt    Wheat   730.379174            31.620687   
+
+   Fertilizer_Used  Irrigation_Used Weather_Condition  Days_to_Harvest  \
+0            False             True            Cloudy              122   
+1             True             True             Rainy              140   
+2            False            False             Sunny              106   
+3            False             True             Rainy              146   
+4             True             True            Cloudy              110   
+
+   Yield_tons_per_hectare  
+0                6.555816  
+1                8.527341  
+2                1.127443  
+3                6.517573  
+4                7.248251  
+\end{Verbatim}
+
+\vspace{0.5cm}
+
+\textbf{Total Data:} 10 records
+
+\vspace{0.3cm}
+
+\textbf{Average Yield:} 5.10 tons/hectare\\
+\textbf{High Yield Cases:} 6 cases\\
+\textbf{Low Yield Cases:} 4 cases
+
+\vspace{0.5cm}
+
+\section*{High Yield Probability for Different Conditions}
+
+\subsection*{By Region:}
+  P(High\_Yield | Region = West) = 1/3 = 0.33 (33\%)\\
+  P(High\_Yield | Region = South) = 4/4 = 1.00 (100\%)\\
+  P(High\_Yield | Region = North) = 1/3 = 0.33 (33\%)
+
+\subsection*{By Weather:}
+  P(High\_Yield | Weather = Cloudy) = 2/2 = 1.00\\
+  P(High\_Yield | Weather = Rainy) = 3/5 = 0.60\\
+  P(High\_Yield | Weather = Sunny) = 1/3 = 0.33
+
+\subsection*{Fertilizer Usage:}
+  Without Fertilizer: 3/6 = 0.50\\
+  With Fertilizer: 3/4 = 0.75
+
+\vspace{0.5cm}
+
+\section*{Creating Simple Graphs}
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 104236.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+
+begin{document}
+
+\ttfamily  % Using typewriter font to match the original formatting
+
+\section*{Best and Worst Conditions}
+\textbf{Highest Probability:} Region: South = 1.00\\
+\textbf{Lowest Probability:} Crop: Barley = 0.00
+
+\vspace{0.5cm}
+
+\section*{How to Make Decisions?}
+
+\subsection*{Simple Rules:}
+1. \textbf{Probability > 0.50:} Good Condition\\
+   \hspace{1em}- Higher chance of high yield\\
+2. \textbf{Probability < 0.50:} Bad Condition\\
+   \hspace{1em}- Lower chance of high yield\\
+3. \textbf{Probability = 1.00:} Best Condition\\
+   \hspace{1em}- All cases resulted in high yield\\
+4. \textbf{Probability = 0.00:} Avoid\\
+   \hspace{1em}- No cases resulted in high yield
+
+\vspace{0.5cm}
+
+\section*{Simple Recommendations:}
+
+\subsection*{Choose These Conditions (Probability > 0.50):}
+\begin{multicols}{2}
+  - Region: South: 1.00\\
+  - Weather: Cloudy: 1.00\\
+  - Weather: Rainy: 0.60\\
+  - Fertilizer: Fertilizer Used: 0.75\\
+  - Crop: Cotton: 1.00\\
+  - Crop: Rice: 1.00\\
+  - Crop: Soybean: 1.00
+\end{multicols}
+
+\subsection*{Avoid These Conditions (Probability < 0.50):}
+\begin{multicols}{2}
+  - Region: West: 0.33\\
+  - Region: North: 0.33\\
+  - Weather: Sunny: 0.33\\
+  - Crop: Barley: 0.00\\
+  - Crop: Wheat: 0.25
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+begin{document}
+
+\ttfamily  % Using typewriter font to match the original formatting
+
+\section*{INDEPENDENCE CHECK: Are Events Independent or Dependent?}
+Formula: Two events A and B are independent if P(A ∩ B) = P(A) × P(B)\\
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{EVENT A: High Yield (Yield > 5.10)}
+   P(A) = 6/10 = 0.600
+
+\vspace{0.5cm}
+
+\section*{CHECKING INDEPENDENCE FOR DIFFERENT CONDITIONS:}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{REGION CONDITIONS:}
+
+Region = West:\\
+  P(A) = P(High Yield) = 0.600\\
+  P(B) = P(Region = West) = 0.300\\
+  P(A ∩ B) = 0.100\\
+  P(A) × P(B) = 0.600 × 0.300 = 0.180\\
+  Difference = 0.0800\\
+  Independent? \ding{55} NO
+
+Region = South:\\
+  P(A) = P(High Yield) = 0.600\\
+  P(B) = P(Region = South) = 0.400\\
+  P(A ∩ B) = 0.400\\
+  P(A) × P(B) = 0.600 × 0.400 = 0.240\\
+  Difference = 0.1600\\
+  Independent? \ding{55} NO
+
+Region = North:\\
+  P(A) = P(High Yield) = 0.600\\
+  P(B) = P(Region = North) = 0.300\\
+  P(A ∩ B) = 0.100\\
+  P(A) × P(B) = 0.600 × 0.300 = 0.180\\
+  Difference = 0.0800\\
+  Independent? \ding{55} NO
+
+\subsection*{WEATHER CONDITIONS:}
+
+Weather\_Condition = Cloudy:\\
+  P(A ∩ B) = 0.200\\
+  P(A) × P(B) = 0.120\\
+  Independent? \ding{55} NO
+
+Weather\_Condition = Rainy:\\
+  P(A ∩ B) = 0.300\\
+  P(A) × P(B) = 0.300\\
+  Independent? YES
+
+Weather\_Condition = Sunny:\\
+  P(A ∩ B) = 0.100\\
+  P(A) × P(B) = 0.180\\
+  Independent? \ding{55} NO
+
+\subsection*{FERTILIZER USAGE:}
+
+Fertilizer Used:\\
+  P(A ∩ B) = 0.300\\
+  P(A) × P(B) = 0.240\\
+  Independent? \ding{55} NO
+
+No Fertilizer:\\
+  P(A ∩ B) = 0.300\\
+  P(A) × P(B) = 0.360\\
+  Independent? \ding{55} NO
+
+\subsection*{IRRIGATION USAGE:}
+
+Irrigation Used:\\
+  P(A ∩ B) = 0.600\\
+  P(A) × P(B) = 0.420\\
+  Independent? \ding{55} NO
+
+No Irrigation:\\
+  P(A ∩ B) = 0.000\\
+  P(A) × P(B) = 0.180\\
+  Independent? \ding{55} NO
+
+\subsection*{CROP TYPES:}
+
+Cotton:\\
+  Independent? \ding{55} NO
+
+Rice:\\
+  Independent? \ding{55} NO
+
+Barley:\\
+  Independent? \ding{55} NO
+
+Soybean:\\
+  Independent? \ding{55} NO
+
+Wheat:\\
+  Independent? \ding{55} NO
+
+\vspace{0.5cm}
+
+\section*{SUMMARY OF INDEPENDENCE ANALYSIS:}
+\noindent\rule{\textwidth}{0.4pt}
+
+Total Conditions Checked: 15\\
+Independent Events: 1\\
+Dependent Events: 14
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 104909.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily
+
+\section*{======================================================================}
+\section*{INTERPRETATION GUIDE:}
+\section*{======================================================================}
+
+\subsection*{WHAT DOES INDEPENDENCE MEAN?}
+\subsection*{============================}
+Two events A and B are INDEPENDENT if:\\
+  P(A ∩ B) = P(A) × P(B)\\
+This means:\\
+1. Knowing B occurred doesn't change the probability of A\\
+2. A and B have no relationship\\
+3. They occur by chance, not because of each other
+
+\subsection*{WHAT DOES DEPENDENCE MEAN?}
+\subsection*{==========================}
+If P(A ∩ B) ≠ P(A) × P(B), then events are DEPENDENT:\\
+1. Knowing B occurred CHANGES the probability of A\\
+2. A and B are related\\
+3. One event affects the other
+
+\subsection*{IN OUR CASE:}
+\subsection*{============}
+Event A = High Yield (Yield > Average)\\
+Event B = Various conditions (Region, Weather, etc.)\\
+IF INDEPENDENT (YES):\\
+  - The condition doesn't affect high yield probability\\
+  - Example: If weather is rainy, high yield probability stays same\\
+IF DEPENDENT (NO):\\
+  - The condition AFFECTS high yield probability\\
+  - Example: If region is South, high yield probability changes
+
+\vspace{0.5cm}
+
+\section*{MOST DEPENDENT CONDITIONS (Highest Differences):}
+\section*{======================================================================}
+
+Irrigation\_Used = True:\\
+  P(A ∩ B) = 0.600\\
+  P(A) × P(B) = 0.420\\
+  Difference = 0.180\\
+  Status: \ding{55} NO
+
+Irrigation\_Used = False:\\
+  P(A ∩ B) = 0.000\\
+  P(A) × P(B) = 0.180\\
+  Difference = 0.180\\
+  Status: \ding{55} NO
+
+Region = South:\\
+  P(A ∩ B) = 0.400\\
+  P(A) × P(B) = 0.240\\
+  Difference = 0.160\\
+  Status: \ding{55} NO
+
+Crop = Wheat:\\
+  P(A ∩ B) = 0.100\\
+  P(A) × P(B) = 0.240\\
+  Difference = 0.140\\
+  Status: \ding{55} NO
+
+Weather\_Condition = Cloudy:\\
+  P(A ∩ B) = 0.200\\
+  P(A) × P(B) = 0.120\\
+  Difference = 0.080\\
+  Status: \ding{55} NO
+
+\vspace{0.5cm}
+
+\section*{IMPORTANT NOTE ABOUT SMALL SAMPLE SIZE:}
+\section*{======================================================================}
+
+WARNING: We have only 10 data points!\\
+This is a very small sample for statistical independence testing.\\
+With small samples:\\
+1. Results may not be statistically significant\\
+2. Random chance can create apparent dependence/independence\\
+3. We need more data for reliable conclusions\\
+For reliable independence testing, we typically need:\\
+- At least 30-50 data points for each condition\\
+- Better: 100+ data points\\
+RECOMMENDATION:\\
+- Treat these results as preliminary\\
+- Collect more data for accurate analysis\\
+- Use these insights as hypotheses to test with larger datasets
+
+\vspace{0.5cm}
+
+\section*{PRACTICAL IMPLICATIONS:}
+\section*{======================================================================}
+
+IF DEPENDENT (NO):\\
+\subsection*{=====================}
+TAKE ACTION: These conditions MATTER for high yield\\
+CONSIDER: Adjust farming practices based on these conditions\\
+EXAMPLE: If South region gives better yields, focus resources there
+
+IF INDEPENDENT (YES):\\
+\subsection*{========================}
+NO EFFECT: These conditions DON'T affect high yield probability\\
+SAVE RESOURCES: Don't waste time/money on these factors\\
+FOCUS ELSEWHERE: Look for other factors that actually matter
+
+BOTTOM LINE:\\
+\subsection*{============}
+Use dependency analysis to:\\
+1. Focus on what REALLY matters for high yield\\
+2. Avoid wasting resources on irrelevant factors\\
+3. Make data-driven farming decisions
+
+\vspace{1cm}
+
+\section*{\textbf{3. Bayes' Rule}}
+\section*{BAYES' THEOREM ANALYSIS FOR AGRICULTURAL DATA}
+Formula: P(B|A) = [P(A|B) × P(B)] / P(A)\\
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Dataset Overview:}}
+Total records: 10\\
+\begin{Verbatim}[fontsize=\small]
+  Region     Crop  Yield_tons_per_hectare
+0   West   Cotton                6.555816
+1  South     Rice                8.527341
+2  North   Barley                1.127443
+3  North  Soybean                6.517573
+4  South    Wheat                7.248251
+\end{Verbatim}
+
+\subsection*{\textbf{Event A: High Yield (Yield > 5.10 tons/hectare)}}
+P(A) = Probability of High Yield = 6/10 = 0.600
+
+\vspace{0.5cm}
+
+\section*{MEDICAL DIAGNOSIS ANALOGY}
+\noindent\rule{\textwidth}{0.4pt}
+
+In medical testing:\\
+- A = Test Positive\\
+- B = Have Disease\\
+Bayes' Theorem: P(Disease|Positive) = [P(Positive|Disease) × P(Disease)] / P(Positive)\\
+In our case:\\
+- A = High Yield (what we observe)\\
+- B = Specific condition (what we want to infer)
+
+\vspace{0.5cm}
+
+\subsection*{\textbf{Example: Disease Testing Scenario}}
+Disease prevalence P(Disease): 0.010\\
+Test sensitivity P(Positive|Disease): 0.950\\
+Test specificity P(Negative|No Disease): 0.900\\
+P(Positive): 0.108
+
+P(Disease|Positive) = (0.950 × 0.010) / 0.108\\
+                    = 0.088 (8.8\%)
+
+\vspace{0.5cm}
+
+\section*{BAYES' THEOREM APPLIED TO AGRICULTURAL DATA}
+Question: Given that we have HIGH YIELD, what's the probability it came from a specific condition?
+
+\subsection*{\textbf{REGION ANALYSIS:}}
+
+Region = West:\\
+  P(B) = P(West) = 0.300\\
+  P(A|B) = P(High Yield | West) = 0.333\\
+  P(B|A) = P(West | High Yield) = 0.167\\
+  Bayes: (0.333 × 0.300) / 0.600 = 0.167
+
+Region = South:\\
+  P(B) = P(South) = 0.400\\
+  P(A|B) = P(High Yield | South) = 1.000\\
+  P(B|A) = P(South | High Yield) = 0.667\\
+  Bayes: (1.000 × 0.400) / 0.600 = 0.667
+
+Region = North:\\
+  P(B) = P(North) = 0.300\\
+  P(A|B) = P(High Yield | North) = 0.333\\
+  P(B|A) = P(North | High Yield) = 0.167\\
+  Bayes: (0.333 × 0.300) / 0.600 = 0.167
+
+\subsection*{\textbf{WEATHER ANALYSIS:}}
+
+Cloudy weather:\\
+  P(Weather=Cloudy | High Yield) = 0.333
+
+Rainy weather:\\
+  P(Weather=Rainy | High Yield) = 0.500
+
+Sunny weather:\\
+  P(Weather=Sunny | High Yield) = 0.167
+
+\subsection*{\textbf{FERTILIZER ANALYSIS:}}
+
+Fertilizer Used:\\
+  P(Fertilizer Used | High Yield) = 0.500
+
+No Fertilizer:\\
+  P(No Fertilizer | High Yield) = 0.500
+
+\subsection*{\textbf{IRRIGATION ANALYSIS:}}
+
+Irrigation Used:\\
+  P(Irrigation Used | High Yield) = 1.000
+
+No Irrigation:\\
+  P(No Irrigation | High Yield) = 0.000
+
+\vspace{0.5cm}
+
+\section*{BAYESIAN POSTERIOR PROBABILITIES VISUALIZATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 105549.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily
+
+\section*{MACHINE LEARNING CLASSIFICATION APPLICATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+Naive Bayes Classifier Concept:\\
+- We want to predict if a new farm will have HIGH YIELD\\
+- Using Bayes' Theorem for each feature independently
+
+\vspace{0.5cm}
+
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+EXAMPLE PREDICTION 1:\\
+
+Predicting for new farm:\\
+  P(Region=South | High Yield) = 4/6 = 0.667\\
+  P(Weather\_Condition=Rainy | High Yield) = 3/6 = 0.500\\
+  P(Fertilizer\_Used=True | High Yield) = 3/6 = 0.500
+
+Predicted probability of High Yield: 1.000 (100.0\%)\\
+Prediction: HIGH YIELD\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\vspace{0.3cm}
+
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+EXAMPLE PREDICTION 2:\\
+
+Predicting for new farm:\\
+  P(Region=North | High Yield) = 1/6 = 0.167\\
+  P(Weather\_Condition=Sunny | High Yield) = 1/6 = 0.167\\
+  P(Fertilizer\_Used=False | High Yield) = 3/6 = 0.500
+
+Predicted probability of High Yield: 0.100 (10.0\%)\\
+Prediction: LOW YIELD\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\vspace{0.5cm}
+
+\section*{SPAM FILTERING ANALOGY}
+\noindent\rule{\textwidth}{0.4pt}
+
+In spam filtering:\\
+- A = Email is spam\\
+- B = Email contains certain words\\
+Bayes' Theorem: P(Spam|Word) = [P(Word|Spam) × P(Spam)] / P(Word)\\
+Similarly in agriculture:\\
+- A = High Yield\\
+- B = Certain farming conditions
+
+\vspace{0.5cm}
+
+\section*{BAYESIAN INFERENCE}
+\noindent\rule{\textwidth}{0.1pt}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllll}
+\toprule
+Event B & Prior P(B) & Likelihood P(A|B) & Posterior P(B|A) & Bayes Factor & Evidence Strength \\
+\midrule
+Region = West & 0.30 & 0.3333 & 0.1667 & 0.56 & Negative \\
+Region = South & 0.40 & 1.0000 & 0.6667 & 1.67 & Moderate \\
+Region = North & 0.30 & 0.3333 & 0.1667 & 0.56 & Negative \\
+Weather = Cloudy & 0.20 & 1.0000 & 0.3000 & 1.67 & Moderate \\
+Weather = Rainy & 0.50 & 0.6000 & 0.5000 & 1.00 & Negative \\
+Weather = Sunny & 0.30 & 0.3333 & 0.1667 & 0.56 & Negative \\
+Fertilizer = True & 0.40 & 0.7500 & 0.5000 & 1.25 & Weak \\
+Fertilizer = False & 0.60 & 0.5000 & 0.5000 & 0.83 & Negative \\
+Irrigation = True & 0.70 & 0.8571 & 1.0000 & 1.43 & Weak \\
+Irrigation = False & 0.30 & 0.0000 & 0.0000 & 0.00 & Negative \\
+\bottomrule
+\end{tabular}
+}
+\caption{Bayesian Analysis Results}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\vspace{0.5cm}
+
+\section*{�� PRACTICAL INSIGHTS FROM BAYESIAN ANALYSIS}
+\noindent\rule{\textwidth}{0.4pt}
+
+1. \textbf{HIGH POSTERIOR PROBABILITY} (P(B|A) > P(B)):\\
+   - Condition is MORE COMMON in high yield cases than in general\\
+   - Example: If P(South | High Yield) > P(South), South region is associated with high yield\\
+2. \textbf{BAYES FACTOR > 1}:\\
+   - Evidence SUPPORTS this condition being associated with high yield\\
+   - Higher Bayes factor = stronger evidence\\
+3. \textbf{BAYES FACTOR < 1}:\\
+   - Evidence AGAINST this condition being associated with high yield\\
+4. \textbf{MACHINE LEARNING APPLICATION}:\\
+   - We can build a classifier to predict high yield based on conditions\\
+   - Uses Bayes' Theorem to combine evidence from multiple features\\
+5. \textbf{DECISION MAKING}:\\
+   - Focus resources on conditions with high P(B|A)\\
+   - Avoid conditions with low P(B|A) unless other factors compensate
+
+\vspace{0.3cm}
+
+STRONGEST EVIDENCE FOR HIGH YIELD:\\
+   Condition: Region = South\\
+   Bayes Factor: 1.67\\
+   P(High Yield) = 0.60, P(High Yield | Condition) = 1.00
+
+STRONGEST EVIDENCE AGAINST HIGH YIELD:\\
+   Condition: Irrigation\_Used = False\\
+   Bayes Factor: 0.00\\
+   P(High Yield) = 0.60, P(High Yield | Condition) = 0.00
+
+\vspace{0.5cm}
+
+\noindent\rule{\textwidth}{0.4pt}
+\section*{RECOMMENDATIONS FOR FARMERS:}
+
+\subsection*{FOCUS ON THESE CONDITIONS (Associated with High Yield):}
+\begin{itemize}
+  \item Region = South: +26.7\% more likely in high yield cases
+  \item Weather\_Condition = Cloudy: +13.3\% more likely in high yield cases
+  \item Irrigation\_Used = True: +30.0\% more likely in high yield cases
+  \item Fertilizer\_Used = True: +10.0\% more likely in high yield cases
+\end{itemize}
+
+\subsection*{RECONSIDER THESE CONDITIONS (Less associated with High Yield):}
+\begin{itemize}
+  \item Irrigation\_Used = False: 30.0\% less likely in high yield cases
+  \item Region = West: 13.3\% less likely in high yield cases
+  \item Region = North: 13.3\% less likely in high yield cases
+\end{itemize}
+
+\vspace{1cm}
+
+\section*{\textbf{4. Probability Distributions}}
+
+Continuous Random Variables:\\
+• Can take ANY value within a range (e.g., 1.5, 2.718, 3.14159...)\\
+• Represented by probability density functions (PDFs)\\
+• Examples: Height, Weight, Temperature, Yield
+
+The Normal Distribution (Gaussian Distribution):\\
+• Most important continuous distribution in statistics\\
+• Bell-shaped curve\\
+• Described by two parameters: Mean (μ) and Standard Deviation (σ)\\
+• Formula: f(x) = (1/(σ√(2π))) × e\^{(-(x-μ)²/(2σ²))}
+
+\vspace{0.5cm}
+
+\subsection*{\textbf{Yield Data Analysis:}}
+Sample size: 10 observations\\
+Range: 1.13 to 8.53 tons/hectare
+
+\subsection*{\textbf{Descriptive Statistics for Yield:}}
+Mean (μ): 5.101 tons/hectare\\
+Standard Deviation (σ): 2.358 tons/hectare\\
+Median: 5.864 tons/hectare\\
+Skewness: -0.352 (Positive = right-skewed, Negative = left-skewed)\\
+Kurtosis: -0.956 (>3 = heavy tails, <3 = light tails)
+
+\vspace{0.5cm}
+
+\section*{NORMALITY TESTS AND VISUAL CHECKS}
+\noindent\rule{\textwidth}{0.4pt}
+
+�� \textbf{Shapiro-Wilk Normality Test:}\\
+Test Statistic: 0.9461\\
+P-value: 0.6229\\
+Conclusion: Data appears normally distributed (p > 0.05)
+
+\vspace{0.3cm}
+
+\textbf{Creating Visual Normality Checks...}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 105916.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+\begin{document}
+
+\ttfamily
+
+\section*{EMPIRICAL RULE (68-95-99.7 RULE) DEMONSTRATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+The Empirical Rule for Normal Distributions:\\
+• About 68\% of data falls within 1 standard deviation of the mean\\
+• About 95\% of data falls within 2 standard deviations of the mean\\
+• About 99.7\% of data falls within 3 standard deviations of the mean\\
+Mean (μ) = 5.101\\
+Standard Deviation (σ) = 2.358
+
+\vspace{0.3cm}
+
+\subsection*{\textbf{Empirical Rule Check for Sample Data:}}
+Data within μ ± 1σ (2.74 to 7.46):\\
+  Expected: ~68\%, Actual: 7/10 = 70.0\%
+
+Data within μ ± 2σ (0.39 to 9.82):\\
+  Expected: ~95\%, Actual: 10/10 = 100.0\%
+
+Data within μ ± 3σ (-1.97 to 12.17):\\
+  Expected: ~99.7\%, Actual: 10/10 = 100.0\%
+
+\vspace{0.5cm}
+
+\section*{Z-SCORES (STANDARD SCORES)}
+\noindent\rule{\textwidth}{0.4pt}
+
+Z-Score Formula: z = (x - μ) / σ\\
+Z-scores tell us how many standard deviations a value is from the mean:\\
+• z = 0: Exactly at the mean\\
+• z > 0: Above the mean\\
+• z < 0: Below the mean\\
+• |z| > 2: Unusual (in the tails of the distribution)
+
+\vspace{0.3cm}
+
+\subsection*{\textbf{Z-Scores for Each Observation:}}
+Row 0: Yield = 6.56, Z-score = 0.62 (Within 1 SD of mean)\\
+Row 1: Yield = 8.53, Z-score = 1.45 (1.5 SD from mean - somewhat unusual)\\
+Row 2: Yield = 1.13, Z-score = -1.69 (1.7 SD from mean - somewhat unusual)\\
+Row 3: Yield = 6.52, Z-score = 0.60 (Within 1 SD of mean)\\
+Row 4: Yield = 7.25, Z-score = 0.91 (Within 1 SD of mean)\\
+Row 5: Yield = 5.90, Z-score = 0.34 (Within 1 SD of mean)\\
+Row 6: Yield = 2.65, Z-score = -1.04 (1.0 SD from mean - somewhat unusual)\\
+Row 7: Yield = 5.83, Z-score = 0.31 (Within 1 SD of mean)\\
+Row 8: Yield = 2.94, Z-score = -0.91 (Within 1 SD of mean)\\
+Row 9: Yield = 3.71, Z-score = -0.59 (Within 1 SD of mean)
+
+\vspace{0.5cm}
+
+\section*{PROBABILITY CALCULATIONS USING NORMAL DISTRIBUTION}
+\noindent\rule{\textwidth}{0.4pt}
+
+We can calculate probabilities using the normal distribution:\\
+1. P(Yield < X): Probability yield is less than X\\
+2. P(Yield > X): Probability yield is greater than X\\
+3. P(a < Yield < b): Probability yield is between a and b
+
+\vspace{0.3cm}
+
+\subsection*{\textbf{Probability Calculations:}}
+P(Yield < 7.0) = 0.790 or 79.0\%\\
+P(Yield > 7.0) = 0.210 or 21.0\%\\
+P(3.0 < Yield < 7.0) = 0.603 or 60.3\%
+
+\vspace{0.5cm}
+
+\section*{PERCENTILES AND QUANTILES}
+\noindent\rule{\textwidth}{0.4pt}
+
+Percentiles divide the data into 100 equal parts.\\
+Quantiles divide the data into equal-sized groups.
+
+\vspace{0.3cm}
+
+\subsection*{\textbf{Percentiles of Yield Data:}}
+  10th percentile: 2.500 tons/hectare\\
+  25th percentile: 3.135 tons/hectare\\
+  50th percentile: 5.864 tons/hectare\\
+  75th percentile: 6.546 tons/hectare\\
+  90th percentile: 7.376 tons/hectare\\
+  95th percentile: 7.952 tons/hectare
+
+\subsection*{\textbf{Quartiles and IQR:}}
+  Q1 (25th percentile): 3.135\\
+  Q2 (50th percentile, Median): 5.864\\
+  Q3 (75th percentile): 6.546\\
+  IQR (Q3 - Q1): 3.412
+
+\vspace{0.5cm}
+
+\section*{SIMULATING NORMALLY DISTRIBUTED DATA}
+\noindent\rule{\textwidth}{0.4pt}
+
+Simulating new yield data based on our sample statistics:\\
+Using μ = 5.101, σ = 2.358
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 111120.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+\begin{document}
+
+\ttfamily
+
+\section*{CENTRAL LIMIT THEOREM (CLT) DEMONSTRATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+Central Limit Theorem:\\
+• For large enough sample sizes, the distribution of sample means\\
+  approaches a normal distribution, regardless of the population distribution\\
+• Even if individual yields aren't normal, average yields from multiple\\
+  farms will be approximately normal
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 111338.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily
+
+\section*{\textbf{4.1 Normal Distribution}}
+\section*{NORMAL DISTRIBUTION ANALYSIS: X ∼ N(μ, σ²)}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Normal Distribution Parameters:}}
+Mean (μ) = 5.1008\\
+Standard Deviation (σ) = 2.3575\\
+Variance (σ²) = 5.5579
+
+Our Yield Distribution: X ∼ N(5.10, 5.56)
+
+\vspace{0.5cm}
+
+\section*{68-95-99.7 RULE (Empirical Rule)}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{1 Standard Deviation (68\% of data):}}
+   μ ± 1σ = 5.10 ± 2.36\\
+   Range: [2.74, 7.46]
+
+\subsection*{\textbf{2 Standard Deviations (95\% of data):}}
+   μ ± 2σ = 5.10 ± 4.72\\
+   Range: [0.39, 9.82]
+
+\subsection*{\textbf{3 Standard Deviations (99.7\% of data):}}
+   μ ± 3σ = 5.10 ± 7.07\\
+   Range: [-1.97, 12.17]
+
+\vspace{0.3cm}
+
+\subsection*{\textbf{Actual Data Check (n=10):}}
+   Within 1σ: 7/10 = 70.0\% (Expected: ~68\%)\\
+   Within 2σ: 10/10 = 100.0\% (Expected: ~95\%)\\
+   Within 3σ: 10/10 = 100.0\% (Expected: ~99.7\%)
+
+\vspace{0.5cm}
+
+\newpage
+\section*{VISUALIZING NORMAL DISTRIBUTION}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 111701.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily
+
+\section*{PROBABILITY CALCULATIONS USING NORMAL DISTRIBUTION}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Probability that a random farm has:}}
+   Yield < 3.0: 0.186 or 18.6\%\\
+   Yield < 5.0: 0.483 or 48.3\%\\
+   Yield < 7.0: 0.790 or 79.0\%\\
+   Yield < 5.100778413593175: 0.500 or 50.0\%
+
+\subsection*{\textbf{Probability that a random farm has:}}
+   Yield > 3.0: 0.814 or 81.4\%\\
+   Yield > 5.0: 0.517 or 51.7\%\\
+   Yield > 7.0: 0.210 or 21.0\%\\
+   Yield > 5.100778413593175: 0.500 or 50.0\%
+
+\subsection*{\textbf{Probability between ranges:}}
+   3 < Yield < 5: 0.297 or 29.7\%\\
+   5 < Yield < 7: 0.307 or 30.7\%\\
+   2.7432505057119116 < Yield < 7.4583063214744385: 0.683 or 68.3\%
+
+\subsection*{\textbf{Percentiles of Yield Distribution:}}
+   5th percentile: 1.223 tons/hectare\\
+   25th percentile: 3.511 tons/hectare\\
+   50th percentile: 5.101 tons/hectare\\
+   75th percentile: 6.691 tons/hectare\\
+   95th percentile: 8.979 tons/hectare
+
+\vspace{0.5cm}
+
+\noindent\rule{\textwidth}{0.4pt}
+\section*{OUTLIER DETECTION USING 3σ RULE}
+\noindent\rule{\textwidth}{0.4pt}
+
+Outlier bounds (3σ rule):\\
+   Lower bound (μ - 3σ): -1.972\\
+   Upper bound (μ + 3σ): 12.173
+
+\subsection*{\textbf{No outliers detected} using 3σ rule}
+
+\vspace{0.5cm}
+
+\section*{\textbf{C. Task 1: Define Events}}
+
+\subsection*{\textbf{SELECTED VARIABLES:}}
+1. Yield\_tons\_per\_hectare (Continuous Variable)\\
+2. Region (Categorical Variable: North, South, West)
+
+\vspace{0.5cm}
+
+\section*{DEFINING EVENTS}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Yield Statistics:}}
+  Mean (μ): 5.101 tons/hectare\\
+  Standard Deviation (σ): 2.358 tons/hectare\\
+  Median: 5.864 tons/hectare\\
+  Minimum: 1.127 tons/hectare\\
+  Maximum: 8.527 tons/hectare
+
+\subsection*{\textbf{EVENT 1: High Yield (A)}}
+   Let A be the event that yield is above average\\
+   Mathematical Notation: A = \{Y > 5.101\}\\
+   Where Y = Yield\_tons\_per\_hectare\\
+   Threshold: Above average yield = 5.101 tons/hectare\\
+   Number of cases: 6 out of 10
+
+\subsection*{\textbf{EVENT 2: Southern Region (B)}}
+   Let B be the event that farm is in Southern region\\
+   Mathematical Notation: B = \{Region = 'South'\}\\
+   Number of cases: 4 out of 10
+
+\subsection*{\textbf{EVENT 3: Moderate Temperature (C)}}
+   Let C be the event that temperature is moderate (20-30°C)\\
+   Mathematical Notation: C = \{20 ≤ Temperature ≤ 30\}\\
+   Temperature range: 20°C to 30°C\\
+   Number of cases: 3 out of 10
+
+\subsection*{\textbf{EVENT 4: Fertilizer Used (D)}}
+   Let D be the event that fertilizer is used\\
+   Mathematical Notation: D = \{Fertilizer\_Used = True\}\\
+   Number of cases: 4 out of 10
+
+\vspace{0.5cm}
+
+\section*{MATHEMATICAL REPRESENTATION OF EVENTS}
+\noindent\rule{\textwidth}{0.4pt}
+
+Let's define our sample space and events more formally:\\
+SAMPLE SPACE (Ω):\\
+  All possible outcomes of our agricultural observations\\
+  Ω = \{All 10 observations in our dataset\}\\
+RANDOM VARIABLES:\\
+  1. Y = Yield\_tons\_per\_hectare (continuous)\\
+  2. R = Region (categorical: \{North, South, West\})\\
+EVENTS:\\
+  1. Event A: High Yield\\
+     A = \{ω ∈ Ω : Y(ω) > 5.08\}\\
+     Where Y(ω) is the yield for observation ω\\
+     P(A) = Number of observations with Y > 5.08 / 10\\
+  2. Event B: Southern Region\\
+     B = \{ω ∈ Ω : R(ω) = 'South'\}\\
+     Where R(ω) is the region for observation ω\\
+     P(B) = Number of observations with Region = 'South' / 10\\
+  3. Event C: Moderate Temperature\\
+     C = \{ω ∈ Ω : 20 ≤ T(ω) ≤ 30\}\\
+     Where T(ω) is the temperature for observation ω\\
+     P(C) = Number of observations with 20 ≤ T ≤ 30 / 10\\
+  4. Event D: Fertilizer Used\\
+     D = \{ω ∈ Ω : F(ω) = True\}\\
+     Where F(ω) is the fertilizer usage for observation ω\\
+     P(D) = Number of observations with Fertilizer\_Used = True / 10
+
+\vspace{0.5cm}
+
+\section*{PROBABILITY CALCULATIONS}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Individual Probabilities:}}
+  P(A) = P(High Yield) = 0.600 (60.0\%)\\
+  P(B) = P(Southern Region) = 0.400 (40.0\%)\\
+  P(C) = P(Moderate Temperature) = 0.300 (30.0\%)\\
+  P(D) = P(Fertilizer Used) = 0.400 (40.0\%)
+
+\subsection*{\textbf{Compound Probabilities (Intersections):}}
+  P(A ∩ B) = P(High Yield AND Southern Region) = 4/10 = 0.400\\
+  P(A ∩ D) = P(High Yield AND Fertilizer Used) = 3/10 = 0.300\\
+  P(B ∩ C) = P(Southern Region AND Moderate Temperature) = 0/10 = 0.000
+
+\subsection*{\textbf{Conditional Probabilities:}}
+  P(A|B) = P(High Yield | Southern Region) = 4/4 = 1.000\\
+  P(B|A) = P(Southern Region | High Yield) = 4/6 = 0.667\\
+  P(A|D) = P(High Yield | Fertilizer Used) = 3/4 = 0.750
+
+\subsection*{\textbf{Union Probabilities:}}
+  P(A ∪ B) = P(High Yield OR Southern Region) = 6/10 = 0.600\\
+    Verification: P(A) + P(B) - P(A ∩ B) = 0.600 + 0.400 - 0.400 = 0.600
+
+\vspace{0.5cm}
+
+\section*{DATASET WITH EVENT INDICATORS}
+\noindent\rule{\textwidth}{0.4pt}
+\noindent\rule{\textwidth}{0.4pt}
+
+\begin{adjustbox}{width=\textwidth}
+{\small\ttfamily
+\begin{tabular}{lrrllllll}
+\toprule
+Region & Yield & Temp & Fertilizer & Event A & Event B & Event C & Event D \\
+\midrule
+West & 6.555816 & 27.676966 & False & True & False & True & False \\
+South & 8.527341 & 18.026142 & True & True & True & False & True \\
+North & 1.127443 & 29.794042 & False & False & False & True & False \\
+North & 6.517573 & 16.644190 & False & True & False & False & False \\
+South & 7.248251 & 31.620687 & True & True & True & False & True \\
+South & 5.898416 & 37.704974 & False & True & True & False & False \\
+West & 2.652392 & 31.593431 & False & False & False & False & False \\
+South & 5.829542 & 30.887107 & True & True & True & False & True \\
+North & 2.943716 & 26.752729 & True & False & False & True & True \\
+West & 3.707293 & 17.646966 & False & False & False & False & False \\
+\bottomrule
+\end{tabular}}
+\end{adjustbox}
+
+
+
+
+
+\vspace{0.5cm}
+
+\section*{VENN DIAGRAM REPRESENTATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Event Counts:}}
+  Event A (High Yield): 6 observations\\
+  Event B (South Region): 4 observations\\
+  Event C (Mod Temp 20-30°C): 3 observations\\
+  Event D (Fertilizer Used): 4 observations
+
+\subsection*{\textbf{Intersection Counts:}}
+  A ∩ B: 4 observations\\
+  A ∩ D: 3 observations\\
+  B ∩ C: 0 observations
+
+\vspace{0.5cm}
+
+\section*{INDEPENDENCE CHECKING}
+\noindent\rule{\textwidth}{0.4pt}
+Two events X and Y are independent if: P(X ∩ Y) = P(X) × P(Y)
+
+Checking independence of A and B:\\
+  P(A ∩ B) = 0.400\\
+  P(A) × P(B) = 0.600 × 0.400 = 0.240\\
+  Conclusion: A and B are DEPENDENT (difference = 0.160)
+
+Checking independence of A and D:\\
+  P(A ∩ D) = 0.300\\
+  P(A) × P(D) = 0.600 × 0.400 = 0.240\\
+  Conclusion: A and D are DEPENDENT (difference = 0.060)
+
+\vspace{0.5cm}
+
+\section*{REAL-WORLD INTERPRETATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+Based on our analysis:\\
+1. \textbf{High Yield Farms (Event A):}\\
+   - 6 out of 10 farms have above-average yield\\
+   - Probability: 0.60 or 60\%\\
+   - This is our target outcome for farmers\\
+2. \textbf{Southern Region Farms (Event B):}\\
+   - 4 out of 10 farms are in Southern region\\
+   - Probability: 0.40 or 40\%\\
+   - Regional factors might affect yield\\
+3. \textbf{Relationship between Region and Yield:}\\
+   - P(High Yield | Southern Region) = 1.00\\
+   - P(Southern Region | High Yield) = 0.67\\
+   - This suggests that Southern farms are 1.7x more likely to have high yield than average\\
+4. \textbf{Fertilizer Impact:}\\
+   - P(High Yield | Fertilizer Used) = 0.75\\
+   - Farms using fertilizer are 1.2x more likely to have high yield
+
+\subsection*{PRACTICAL IMPLICATIONS:}}
+• Southern regions show promise for high yield\\
+• Fertilizer use is associated with better yields\\
+• Temperature range 20-30°C occurs in 3 farms
+
+\vspace{0.5cm}
+
+\noindent\rule{\textwidth}{0.4pt}
+\section*{SUMMARY OF ALL PROBABILITIES}
+\noindent\rule{\textwidth}{0.4pt}
+
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lllll}
+\toprule
+Event & Description & Count & Probability & Percentage \\
+\midrule
+A: High Yield & Yield > average & 6 & 0.6 & 60.0\% \\
+B: South Region & Region = South & 4 & 0.4 & 40.0\% \\
+C: Mod Temp (20-30°C) & 20 ≤ Temp ≤ 30 & 3 & 0.3 & 30.0\% \\
+D: Fertilizer Used & Fertilizer = True & 4 & 0.4 & 40.0\% \\
+A ∩ B & High Yield AND South & 4 & 0.4 & 40.0\% \\
+A ∩ D & High Yield AND Fertilizer & 3 & 0.3 & 30.0\% \\
+B ∩ C & South AND Mod Temp & 0 & 0.0 & 0.0\% \\
+A ∪ B & High Yield OR South & 6 & 0.6 & 60.0\% \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+
+\vspace{0.5cm}
+
+\section*{MATHEMATICAL NOTATION SUMMARY}
+\noindent\rule{\textwidth}{0.4pt}
+
+FINAL MATHEMATICAL NOTATION:\\
+Sample Space: Ω = \{ω₁, ω₂, ..., ω₁₀\} where each ωᵢ is an observation\\
+Random Variables:\\
+  Y: Ω → ℝ, Y(ω) = Yield\_tons\_per\_hectare of observation ω\\
+  R: Ω → \{North, South, West\}, R(ω) = Region of observation ω\\
+  T: Ω → ℝ, T(ω) = Temperature\_Celsius of observation ω\\
+  F: Ω → \{True, False\}, F(ω) = Fertilizer\_Used status of observation ω\\
+Events:\\
+  A = \{ω ∈ Ω : Y(ω) > 5.08\}\\
+  B = \{ω ∈ Ω : R(ω) = 'South'\}\\
+  C = \{ω ∈ Ω : 20 ≤ T(ω) ≤ 30\}\\
+  D = \{ω ∈ Ω : F(ω) = True\}\\
+Probabilities (Empirical):\\
+  P(A) = 6/10 = 0.6\\
+  P(B) = 4/10 = 0.4\\
+  P(C) = 5/10 = 0.5\\
+  P(D) = 5/10 = 0.5\\
+Conditional Probabilities:\\
+  P(A|B) = P(A ∩ B)/P(B) = 4/4 = 1.0\\
+  P(B|A) = P(A ∩ B)/P(A) = 4/6 = 0.667\\
+  P(A|D) = P(A ∩ D)/P(D) = 3/5 = 0.6
+
+\vspace{0.5cm}
+
+\section*{\textbf{D. Task 2: Conditional Probability}}
+\subsection*{\textbf{INDIVIDUAL EVENT PROBABILITIES:}}
+  P(A) = P(High Yield) = 0.600 (60.0\%)\\
+  P(B) = P(South Region) = 0.400 (40.0\%)\\
+  P(C) = P(Moderate Temperature) = 0.300 (30.0\%)\\
+  P(D) = P(Fertilizer Used) = 0.400 (40.0\%)
+
+\vspace{0.5cm}
+
+\section*{ANALYSIS OF ALL PAIRS: P(A|B) = P(A ∩ B) / P(B)}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Pair: P(A | B) = P(High Yield | South Region)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(A|B) = P(A ∩ B) / P(B)\\
+  Calculation: 4/4 = 1.000\\
+  P(A) = 0.600, P(B) = 0.400\\
+  P(A ∩ B) = 4/10 = 0.400\\
+  \textbf{Interpretation:}\\
+     Given that a farm is in the SOUTH REGION,\\
+     the probability of having HIGH YIELD is 100.0\%\\
+     → South region farms are MORE LIKELY to have high yield\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(A | C) = P(High Yield | Moderate Temperature)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(A|C) = P(A ∩ C) / P(C)\\
+  Calculation: 1/3 = 0.333\\
+  P(A) = 0.600, P(C) = 0.300\\
+  P(A ∩ C) = 1/10 = 0.100\\
+  \textbf{Interpretation:}\\
+     Given MODERATE TEMPERATURE (20-30°C),\\
+     the probability of HIGH YIELD is 33.3\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(A | D) = P(High Yield | Fertilizer Used)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(A|D) = P(A ∩ D) / P(D)\\
+  Calculation: 3/4 = 0.750\\
+  P(A) = 0.600, P(D) = 0.400\\
+  P(A ∩ D) = 3/10 = 0.300\\
+  \textbf{Interpretation:}\\
+     Given that FERTILIZER IS USED,\\
+     the probability of HIGH YIELD is 75.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(B | A) = P(South Region | High Yield)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(B|A) = P(B ∩ A) / P(A)\\
+  Calculation: 4/6 = 0.667\\
+  P(B) = 0.400, P(A) = 0.600\\
+  P(B ∩ A) = 4/10 = 0.400\\
+  \textbf{Interpretation:}\\
+     Given that a farm has HIGH YIELD,\\
+     the probability it's in SOUTH REGION is 66.7\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(B | C) = P(South Region | Moderate Temperature)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(B|C) = P(B ∩ C) / P(C)\\
+  Calculation: 0/3 = 0.000\\
+  P(B) = 0.400, P(C) = 0.300\\
+  P(B ∩ C) = 0/10 = 0.000\\
+  \textbf{Interpretation:}\\
+     Given MODERATE TEMPERATURE,\\
+     the probability of SOUTH REGION is 0.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(B | D) = P(South Region | Fertilizer Used)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(B|D) = P(B ∩ D) / P(D)\\
+  Calculation: 3/4 = 0.750\\
+  P(B) = 0.400, P(D) = 0.400\\
+  P(B ∩ D) = 3/10 = 0.300\\
+  \textbf{Interpretation:}\\
+     Given that FERTILIZER IS USED,\\
+     the probability of SOUTH REGION is 75.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(C | A) = P(Moderate Temperature | High Yield)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(C|A) = P(C ∩ A) / P(A)\\
+  Calculation: 1/6 = 0.167\\
+  P(C) = 0.300, P(A) = 0.600\\
+  P(C ∩ A) = 1/10 = 0.100\\
+  \textbf{Interpretation:}\\
+     Given HIGH YIELD,\\
+     the probability of MODERATE TEMPERATURE is 16.7\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(C | B) = P(Moderate Temperature | South Region)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(C|B) = P(C ∩ B) / P(B)\\
+  Calculation: 0/4 = 0.000\\
+  P(C) = 0.300, P(B) = 0.400\\
+  P(C ∩ B) = 0/10 = 0.000\\
+  \textbf{Interpretation:}\\
+     Given SOUTH REGION,\\
+     the probability of MODERATE TEMPERATURE is 0.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(C | D) = P(Moderate Temperature | Fertilizer Used)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(C|D) = P(C ∩ D) / P(D)\\
+  Calculation: 1/4 = 0.250\\
+  P(C) = 0.300, P(D) = 0.400\\
+  P(C ∩ D) = 1/10 = 0.100\\
+  \textbf{Interpretation:}\\
+     Given that FERTILIZER IS USED,\\
+     the probability of MODERATE TEMPERATURE is 25.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(D | A) = P(Fertilizer Used | High Yield)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(D|A) = P(D ∩ A) / P(A)\\
+  Calculation: 3/6 = 0.500\\
+  P(D) = 0.400, P(A) = 0.600\\
+  P(D ∩ A) = 3/10 = 0.300\\
+  \textbf{Interpretation:}\\
+     Given HIGH YIELD,\\
+     the probability that FERTILIZER WAS USED is 50.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(D | B) = P(Fertilizer Used | South Region)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(D|B) = P(D ∩ B) / P(B)\\
+  Calculation: 3/4 = 0.750\\
+  P(D) = 0.400, P(B) = 0.400\\
+  P(D ∩ B) = 3/10 = 0.300\\
+  \textbf{Interpretation:}\\
+     Given SOUTH REGION,\\
+     the probability that FERTILIZER WAS USED is 75.0\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\subsection*{\textbf{Pair: P(D | C) = P(Fertilizer Used | Moderate Temperature)}}
+\noindent\rule{0.9\textwidth}{0.2pt}\\
+  Formula: P(D|C) = P(D ∩ C) / P(C)\\
+  Calculation: 1/3 = 0.333\\
+  P(D) = 0.400, P(C) = 0.300\\
+  P(D ∩ C) = 1/10 = 0.100\\
+  \textbf{Interpretation:}\\
+     Given MODERATE TEMPERATURE,\\
+     the probability that FERTILIZER WAS USED is 33.3\%\\
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+\vspace{0.5cm}
+
+\section*{COMPARISON MATRIX: P(A|B) vs P(A)}
+\noindent\rule{\textwidth}{0.4pt}
+
+This shows how knowing B changes the probability of A:\\
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lllll}
+\toprule
+ & P(A|B) & vs & P(A) & Effect of knowing B \\
+\midrule
+P(High Yield | South) & 1.000 & vs & 0.600 & INCREASES probability \\
+P(High Yield | Mod Temp) & 0.800 & vs & 0.600 & INCREASES probability \\
+P(High Yield | Fertilizer) & 0.600 & vs & 0.600 & NO CHANGE \\
+P(South | High Yield) & 0.667 & vs & 0.400 & INCREASES probability \\
+P(Mod Temp | High Yield) & 0.667 & vs & 0.500 & INCREASES probability \\
+P(Fertilizer | High Yield) & 0.500 & vs & 0.500 & NO CHANGE \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+
+\vspace{0.5cm}
+
+\section*{BAYES' THEOREM APPLICATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+Let's verify P(B|A) using Bayes' Theorem:\\
+P(B|A) = [P(A|B) × P(B)] / P(A)
+
+P(B|A) = P(South | High Yield) = [P(A|B) × P(B)] / P(A)\\
+       = [1.000 × 0.400] / 0.600\\
+       = 0.667
+
+Direct calculation: P(B|A) = 0.667\\
+Bayes' Theorem gives the same result: 0.667
+
+\vspace{0.5cm}
+
+\section*{\textbf{E. Task 3: Independence Check}}
+\subsection*{\textbf{Events Definition:}}
+Event A: High Yield (Yield > Average)\\
+Event B: South Region (Region = 'South')
+
+\subsection*{\textbf{Data Summary (10 records):}}
+begin{document}
+\ttfamily
+Average Yield: 5.101 tons/hectare\\
+{\small
+\begin{verbatim}
+Region  Yield_tons_per_hectare  Event_A  Event_B
+  West            6.555816       True     False
+ South            8.527341       True     True
+ North            1.127443       False    False
+ North            6.517573       True     False
+ South            7.248251       True     True
+ South            5.898416       True     True
+  West            2.652392       False    False
+ South            5.829542       True     True
+ North            2.943716       False    False
+  West            3.707293       False    False
+\end{verbatim}
+}
+
+
+\vspace{0.5cm}
+
+\section*{1. COMPUTING PROBABILITIES}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{P(A) = P(High Yield):}}
+   Number of High Yield cases: 6\\
+   Total cases: 10\\
+   P(A) = 6/10 = 0.600
+
+\subsection*{\textbf{P(B) = P(South Region):}}
+   Number of South Region cases: 4\\
+   Total cases: 10\\
+   P(B) = 4/10 = 0.400
+
+\subsection*{\textbf{P(A ∩ B) = P(High Yield AND South Region):}}
+   Number of cases with both High Yield AND South Region: 4\\
+   Total cases: 10\\
+   P(A ∩ B) = 4/10 = 0.400
+
+\vspace{0.5cm}
+
+\section*{2. COMPARING P(A ∩ B) WITH P(A)P(B)}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Calculation:}}
+   P(A) × P(B) = 0.600 × 0.400\\
+               = 0.240
+
+\subsection*{\textbf{Comparison:}}
+   P(A ∩ B) = 0.400\\
+   P(A) × P(B) = 0.240\\
+   Difference = 0.160
+
+\vspace{0.5cm}
+
+\section*{3. CHECKING INDEPENDENCE}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Independence Rule:}}
+Two events A and B are independent if: P(A ∩ B) = P(A) × P(B)
+
+\subsection*{\textbf{RESULT: DEPENDENT (NOT INDEPENDENT)}}
+   Because P(A ∩ B) ≠ P(A) × P(B)\\
+   0.400 ≠ 0.240
+
+\vspace{0.5cm}
+
+\section*{MATHEMATICAL VERIFICATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Step-by-step calculation:}}
+1. P(A) = 6/10 = 0.600\\
+2. P(B) = 4/10 = 0.400\\
+3. P(A) × P(B) = 0.600 × 0.400 = 0.240\\
+4. P(A ∩ B) = 4/10 = 0.400
+
+\subsection*{\textbf{Conclusion: DEPENDENT}}
+   Because 0.400 ≠ 0.240
+
+\vspace{0.5cm}
+
+\section*{ADDITIONAL ANALYSIS WITH EXACT VALUES}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Exact values from data:}}
+Total farms: 10\\
+High Yield farms: 6\\
+South Region farms: 4\\
+Both High Yield AND South Region: 4
+
+\subsection*{\textbf{Exact probabilities:}}
+P(A) = 6/10 = 0.6000\\
+P(B) = 4/10 = 0.4000\\
+P(A) × P(B) = 0.2400\\
+P(A ∩ B) = 4/10 = 0.4000
+
+\vspace{0.5cm}
+
+\section*{\textbf{F. Task 4: Bayes' Rule}}
+\section*{BAYES' THEOREM ANALYSIS: P(B|A) = [P(A|B) × P(B)] / P(A)}
+
+\subsection*{\textbf{Dataset (10 records):}}
+\begin{document}
+{\ttfamily\small
+\begin{tabular}{lr}
+Region & Yield\_tons\_per\_hectare \\
+\hline
+West  & 6.555816 \\
+South & 8.527341 \\
+North & 1.127443 \\
+North & 6.517573 \\
+South & 7.248251 \\
+South & 5.898416 \\
+West  & 2.652392 \\
+South & 5.829542 \\
+North & 2.943716 \\
+West  & 3.707293 \\
+\end{tabular}
+}
+
+
+
+
+\vspace{0.5cm}
+
+\section*{1. DEFINE EVENTS}
+\noindent\rule{\textwidth}{0.4pt}
+
+Event A: High Yield (Yield > Average)\\
+Event B: South Region (Region = 'South')\\
+Average Yield: 5.101 tons/hectare
+
+\subsection*{\textbf{Dataset with Events:}}
+{\small\ttfamily
+\begin{verbatim}
+Region  Yield_tons_per_hectare  Event_A  Event_B
+  West          6.555816         True     False
+ South          8.527341         True     True
+ North          1.127443         False    False
+ North          6.517573         True     False
+ South          7.248251         True     True
+ South          5.898416         True     True
+  West          2.652392         False    False
+ South          5.829542         True     True
+ North          2.943716         False    False
+  West          3.707293         False    False
+\end{verbatim}}
+
+\vspace{0.5cm}
+
+\section*{2. COMPUTE P(B) - PROBABILITY OF SOUTH REGION}
+\noindent\rule{\textwidth}{0.4pt}
+Number of South Region farms: 4\\
+Total farms: 10
+
+P(B) = P(South Region) = 4/10\\
+P(B) = 0.400 (40.0\%)
+
+\vspace{0.5cm}
+
+\section*{3. COMPUTE P(A|B) - CONDITIONAL PROBABILITY}
+\noindent\rule{\textwidth}{0.4pt}
+
+P(A|B) = Probability of High Yield GIVEN South Region\\
+       = P(High Yield AND South Region) / P(South Region)\\
+       = Count(High Yield AND South) / Count(South)\\
+South Region farms: 4\\
+High Yield AND South Region farms: 4
+
+P(A|B) = 4/4\\
+P(A|B) = 1.000 (100.0\%)
+
+\subsection*{\textbf{Interpretation:}}
+Given that a farm is in South Region, the probability of High Yield is 100.0\%
+
+\vspace{0.5cm}
+
+\section*{4. BAYES' THEOREM: COMPUTE P(B|A)}
+\noindent\rule{\textwidth}{0.4pt}
+
+Bayes' Theorem Formula:\\
+P(B|A) = [P(A|B) × P(B)] / P(A)\\
+Where:\\
+• P(B|A) = Probability of South Region GIVEN High Yield\\
+• P(A|B) = Probability of High Yield GIVEN South Region (calculated above)\\
+• P(B) = Probability of South Region (calculated above)\\
+• P(A) = Probability of High Yield (need to calculate)
+
+\subsection*{\textbf{Calculate P(A):}}
+High Yield farms: 6\\
+Total farms: 10\\
+P(A) = P(High Yield) = 6/10 = 0.600
+
+\subsection*{\textbf{Apply Bayes' Theorem:}}
+P(A|B) = 1.000\\
+P(B) = 0.400\\
+P(A) = 0.600
+
+\subsection*{\textbf{Calculation:}}
+P(B|A) = [1.000 * 0.400] / 0.600\\
+       = 0.400 / 0.600\\
+       = 0.667 (66.7\%)
+
+\vspace{0.5cm}
+
+\section*{5. EMPIRICAL VALUE: DIRECT CALCULATION OF P(B|A)}
+\noindent\rule{\textwidth}{0.4pt}
+
+Direct calculation from data:\\
+P(B|A) = P(South Region | High Yield)\\
+       = Count(South Region AND High Yield) / Count(High Yield)\\
+High Yield farms: 6\\
+South Region AND High Yield farms: 4
+
+P(B|A) (Empirical) = 4/6\\
+                    = 0.667 (66.7\%)
+
+\vspace{0.5cm}
+
+\section*{6. COMPARISON: BAYES' THEOREM VS EMPIRICAL VALUE}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Results Comparison:}}
+Bayes' Theorem calculation: P(B|A) = 0.667\\
+Empirical (direct) value:   P(B|A) = 0.667
+
+\subsection*{\textbf{PERFECT MATCH!}}
+   Bayes' Theorem gives the exact same result as empirical calculation.\\
+   Difference: 0.000000
+
+\vspace{0.5cm}
+
+\section*{7. VERIFICATION WITH ACTUAL DATA}
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection*{\textbf{Verification Table:}}
+\begin{footnotesize}
+\begin{tabular}{lrrllll}
+\toprule
+Region & Yield\_tons\_per\_hectare & Event\_A & Event\_B & High Yield? & South Region? \\
+\midrule
+West & 6.555816 & True & False & Yes & No \\
+South & 8.527341 & True & True & Yes & Yes \\
+North & 1.127443 & False & False & No & No \\
+North & 6.517573 & True & False & Yes & No \\
+South & 7.248251 & True & True & Yes & Yes \\
+South & 5.898416 & True & True & Yes & Yes \\
+West & 2.652392 & False & False & No & No \\
+South & 5.829542 & True & True & Yes & Yes \\
+North & 2.943716 & False & False & No & No \\
+West & 3.707293 & False & False & No & No \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+
+\subsection*{\textbf{Count Summary:}}
+Total farms: 10\\
+High Yield farms (A): 6\\
+South Region farms (B): 4\\
+Both A and B: 4
+
+\subsection*{\textbf{Probability Summary:}}
+P(A) = P(High Yield) = 6/10 = 0.600\\
+P(B) = P(South Region) = 4/10 = 0.400\\
+P(A ∩ B) = 4/10 = 0.400\\
+P(A|B) = 4/4 = 1.000\\
+P(B|A) = 4/6 = 0.667
+
+\vspace{0.5cm}
+
+\section*{8. STEP-BY-STEP BAYES' THEOREM VERIFICATION}
+\noindent\rule{\textwidth}{0.4pt}
+
+Let's verify each step of Bayes' Theorem:\\
+Step 1: Calculate all components\\
+1. P(A) = P(High Yield) = 6/10 = 0.6000\\
+2. P(B) = P(South Region) = 4/10 = 0.4000\\
+3. P(A|B) = P(High Yield | South) = 4/4 = 1.0000
+
+Step 2: Apply Bayes' Theorem\\
+P(B|A) = [P(A|B) * P(B)] / P(A)\\
+       = [1.0000 * 0.4000] / 0.6000\\
+       = 0.4000 / 0.6000\\
+       = 0.6667
+
+Step 3: Compare with empirical value\\
+Empirical P(B|A) = 4/6 = 0.6667
+
+\subsection*{\textbf{Conclusion: Bayes' Theorem is verified!}}
+   Calculated: 0.6667\\
+   Empirical:  0.6667
+
+\vspace{0.5cm}
+
+\section*{\textbf{G. Task 5: Probability Distribution (Normal Only)}}
+\subsection*{\textbf{G1. Explore a Numerical Variable}}
+Statistics for Numerical Variable (100-1000 range):\\
+Mean (μ): 540.16\\
+Standard Deviation (σ): 252.19\\
+Total Data Points (n): 1,000,000\\
+Minimum Value: 109.00\\
+Maximum Value: 973.00
+
+
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 112217.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+\section*{ADDITIONAL STATISTICS:}
+\noindent\rule{\textwidth}{0.4pt}
+
+Variance (σ²): 63600.13\\
+Coefficient of Variation: 46.69\%\\
+Skewness: 0.0096\\
+Kurtosis: -1.1666\\
+25th Percentile (Q1): 325.00\\
+50th Percentile (Median): 541.00\\
+75th Percentile (Q3): 757.00\\
+IQR: 432.00
+
+\subsection*{Expected for Uniform Distribution [100, 1000]:}
+  Expected Mean: 550.00\\
+  Expected Std Dev: 259.81
+
+\subsection*{Difference from Uniform:}
+  Mean difference: -9.84\\
+  Std Dev difference: -7.62
+
+\vspace{0.5cm}
+
+\section*{\textbf{G2. Normal Probability Questions}}
+Computed Statistics:\\
+Mean (μ) = 549.9855\\
+Standard Deviation (σ) = 259.8052\\
+Minimum value = 109.00\\
+Maximum value = 991.00
+
+\subsection*{1. P(X > μ) = P(X > 549.99)}
+   = 1 - Φ((549.99 - 549.99)/259.81)\\
+   = 1 - Φ(0)\\
+   = 1 - 0.5\\
+   = 0.5 or 50\%
+
+\subsection*{2. P(μ - σ < X < μ + σ)}
+   = P(549.99 - 259.81 < X < 549.99 + 259.81)\\
+   = P(290.18 < X < 809.79)\\
+   = Φ((809.79 - 549.99)/259.81) - Φ((290.18 - 549.99)/259.81)\\
+   = Φ(1) - Φ(-1)\\
+   = 0.8413 - 0.1587\\
+   = 0.6827 or 68.27\%
+
+\subsection*{3. P(X < μ - 2σ)}
+   = P(X < 549.99 - 2×259.81)\\
+   = P(X < 30.38)\\
+   = Φ((30.38 - 549.99)/259.81)\\
+   = Φ(-2)\\
+   = 0.0228 or 2.28\%
+
+\vspace{0.5cm}
+
+\section*{\textbf{G3. Are Your Data Normally Distributed?}}
+
+\subsection*{DESCRIPTIVE STATISTICS:}}
+Mean (μ): 549.9855\\
+Median: 559.0000\\
+Standard Deviation (σ): 259.8052\\
+Skewness: -0.0010 (Normal ≈ 0)\\
+Kurtosis: -1.2008 (Normal ≈ 0)\\
+Minimum: 109.00\\
+Maximum: 991.00\\
+Range: 882.00
+
+\vspace{0.3cm}
+
+\subsection*{NORMALITY INDICATORS:}}
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+1. MEAN vs MEDIAN:\\
+   Mean = 549.99, Median = 559.00\\
+   Difference: 9.01\\
+   Mean ≠ Median (not consistent with normality)
+
+2. SKEWNESS:\\
+   Value: -0.0010\\
+   Low skewness (|-0.0010| < 0.5)
+
+3. KURTOSIS:\\
+   Value: -1.2008\\
+   Non-normal kurtosis (|-1.2008| ≥ 0.5)\\
+   (Platykurtic - flatter than normal)
+
+4. EMPIRICAL RULE CHECK:\\
+   Normal Distribution Expectation:\\
+   68\% within μ ± σ, 95\% within μ ± 2σ, 99.7\% within μ ± 3σ
+
+   Actual Data:\\
+   56.0\% within μ ± σ (290.2 to 809.8)\\
+   100.0\% within μ ± 2σ (30.4 to 1069.6)\\
+   100.0\% within μ ± 3σ (-229.4 to 1329.4)
+
+5. VISUAL ASSESSMENT:\\
+   Creating visualization...
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 115845.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+\subsection*{2. INDEPENDENCE OF EVENTS}}
+\noindent\rule{0.9\textwidth}{0.2pt}
+
+Contingency Table (Soil × Crop):\\
+{\small\ttfamily
+\begin{tabular}{lrrrrr}
+\toprule
+Soil & Barley & Cotton & Rice & Soybean & Wheat \\
+\midrule
+Clay & 0 & 0 & 1 & 0 & 1 \\
+Loam & 1 & 0 & 0 & 0 & 0 \\
+Peaty & 0 & 0 & 0 & 0 & 1 \\
+Sandy & 0 & 1 & 1 & 1 & 1 \\
+Silt & 0 & 0 & 0 & 1 & 2 \\
+\bottomrule
+\end{tabular}
+}
+
+Chi-square test for independence (Soil vs Crop):\\
+  χ² = 16.87, p-value = 0.3943
+
+\newpage
+\subsection*{CONCLUSION:} Events are independent (p ≥ 0.05)
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Screenshot 2025-12-13 120113.png}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+\newline{} 
+\newline{} 
+
+\noindent
+Expected Yield (sample): 573.93 ± 300.31\\
+Coefficient of Variation: 52.3\% (High variability $\rightarrow$ High risk)\\
+Probability of High Yield (>800): 0.27
+
+\vspace{0.3cm}
+
+\noindent
+Expected Yield by Soil Type:\\
+Sandy: 680.03 (n=4)\\
+Clay: 675.28 (n=2)\\
+Loam: 148.00 (n=1)\\
+Silt: 569.81 (n=3)\\
+Peaty: 385.14 (n=1)
+
+
+
+\subsection*{I. Submission Guidelines}}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{q.jpeg}}
+   
+    \label{fig:bar_chart_crop_freq}
+\end{figure}
+
+
+
+
+
+
+
+\section{Milestone 7}
+Continue documenting each milestone here as instructed in class.
+
+\subsection*{A. Introduction}
+{\color{black}\noindent\rule{\textwidth}{1pt}}  
+
+
+
+
+
+
+\begin{document}
+
+\ttfamily
+
+{\small
+\begin{verbatim}
+SIMPLE LINEAR REGRESSION ANALYSIS
+==================================================
+Number of data points: 10
+X variable range: 148.00 to 992.67
+Y variable range: 16.64 to 37.70
+REGRESSION RESULTS:
+==================================================
+Intercept (α): 31.1535
+Slope (β): -0.006620
+
+Regression Equation: Y = 31.1535 + (-0.006620) * X
+GOODNESS OF FIT:
+==================================================
+R-squared (R²): 0.105822
+Correlation coefficient (r): -0.325302
+Standard deviation of X: 309.3266
+Standard deviation of Y: 6.2949
+EXAMPLE PREDICTIONS:
+==================================================
+X =  148.00 → Predicted Y =  30.17
+X =  591.82 → Predicted Y =  27.24
+X =  992.67 → Predicted Y =  24.58
+ADDITIONAL STATISTICS:
+==================================================
+Sum of X: 5918.22
+Sum of Y: 272.36
+Sum of XY: 154852.38
+Sum of X²: 4459364.57
+Mean of X: 591.82
+Mean of Y: 27.24
+
+Sum of squared residuals: 354.3239
+Mean of residuals: 0.000000
+DATA POINTS WITH PREDICTIONS:
+Index     X           Y          Y_pred       Residual    
+------------------------------------------------------------
+1      897.08       27.68        25.21         2.4621      
+2      992.67       18.03        24.58        -6.5559     
+3      148.00       29.79        30.17        -0.3797     
+4      986.87       16.64        24.62        -7.9763     
+5      730.38       31.62        26.32        5.3023      
+6      797.47       37.70        25.87        11.8307     
+7      357.90       31.59        28.78        2.8092      
+8      441.13       30.89        28.23        2.6539      
+9      181.59       26.75        29.95        -3.1987     
+10     385.14       21.66        28.60        -6.9477    
+\end{verbatim}
+}
+
+\end{document}
+
+
+
+
+\end{document}
+
+\section{Final Conclusion}
+Summarize the overall findings of your project. Mention challenges, learning outcomes, and possible future work.
+
+\newpage
+\section*{References}
+List your references here in proper citation format. If you prefer, you may use BibTeX.
+
+\end{document}

@@ -64,6 +64,11 @@ It is suitable for **analyzing regional agricultural productivity, predicting cr
 - Dataset: [Agriculture Crop Yield — Kaggle](https://www.kaggle.com/datasets/samuelotiattakorah/agriculture-crop-yield)
 - Course material: STA 2101 (ULAB)
 
+## 📚 Learning Resources & Tutorials
 
+- **ULAB - Introduction to Overleaf** : [https://youtu.be/iZyf7xrvoxA](https://youtu.be/iZyf7xrvoxA)
+- **Introduction to Github** : [https://youtu.be/sa6Z89IdrgM](https://youtu.be/sa6Z89IdrgM)
+- **Quick Introduction to Python** : [https://youtu.be/6IBDhDLbNfM](https://youtu.be/6IBDhDLbNfM)
+- **Quick Intro to Colab** : [https://youtu.be/rCfq97iOPnw](https://youtu.be/rCfq97iOPnw)
 
-
+- 

@@ -70,5 +70,5 @@ It is suitable for **analyzing regional agricultural productivity, predicting cr
 - **Introduction to Github** : [https://youtu.be/sa6Z89IdrgM](https://youtu.be/sa6Z89IdrgM)
 - **Quick Introduction to Python** : [https://youtu.be/6IBDhDLbNfM](https://youtu.be/6IBDhDLbNfM)
 - **Quick Intro to Colab** : [https://youtu.be/rCfq97iOPnw](https://youtu.be/rCfq97iOPnw)
-
-- 
+## Acknowledgements
+- **Applied CS Academy** – for fostering practical problem-solving skills and hands-on coding experience that guided the implementation of this project.
